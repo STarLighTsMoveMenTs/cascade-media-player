@@ -150,7 +150,7 @@ const Index = () => {
       {/* Layer 1: Videos */}
       <div className="absolute inset-0 z-0">
         {/* Left Video */}
-        <div className="absolute left-0 top-0 w-1/4 h-full">
+        <div className="absolute left-0 top-0 w-[28%] h-full">
           <video
             autoPlay
             loop
@@ -160,10 +160,12 @@ const Index = () => {
           >
             <source src="/videos/side-video.mp4" type="video/mp4" />
           </video>
+          {/* Right edge fade */}
+          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-black/80 via-black/40 to-transparent" />
         </div>
 
         {/* Right Video (mirrored) */}
-        <div className="absolute right-0 top-0 w-1/4 h-full transform scale-x-[-1]">
+        <div className="absolute right-0 top-0 w-[28%] h-full transform scale-x-[-1]">
           <video
             autoPlay
             loop
@@ -173,10 +175,14 @@ const Index = () => {
           >
             <source src="/videos/side-video.mp4" type="video/mp4" />
           </video>
+          {/* Left edge fade (appears on right due to mirror) */}
+          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-black/80 via-black/40 to-transparent" />
         </div>
 
         {/* Center Video */}
-        <div className="absolute left-1/4 top-0 w-1/2 h-full">
+        <div className="absolute left-[22%] top-0 w-[56%] h-full">
+          {/* Left edge blend */}
+          <div className="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-black/70 via-black/30 to-transparent z-10 pointer-events-none" />
           <video
             autoPlay
             loop
@@ -186,6 +192,8 @@ const Index = () => {
           >
             <source src="/videos/center-video.mp4" type="video/mp4" />
           </video>
+          {/* Right edge blend */}
+          <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-black/70 via-black/30 to-transparent z-10 pointer-events-none" />
         </div>
       </div>
 
