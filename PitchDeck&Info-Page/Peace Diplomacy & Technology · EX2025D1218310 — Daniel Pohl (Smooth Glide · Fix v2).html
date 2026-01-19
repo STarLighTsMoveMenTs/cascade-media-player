@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Peace Diplomacy & Technology · EX2025D1218310 — Daniel Pohl (Smooth Glide · Fix v2)</title>
+<meta name="description" content="Zertifikat EX2025D1218310 · Daniel Pohl · EU‑UNION Expert · D‑U‑N‑S 315676980 · PIC 873042778 · Smooth & Fluid Edition (Bugfix v2)"/>
+
+<style>
+  /* ===============================
+     Smooth & Fluid Edition · 2025 (Enhanced)
+     - WITH blur / backdrop-filter / drop-shadow
+     - Strictly valid CSS & JS
+     - Stable canvases + adaptive perf
+     =============================== */
+  :root{
+    --bg:#05060a;
+    --panel:#0b1220cc;
+    --ink:#e0e0e0;
+    --muted:#b8b8b8;
+    --accent:#00f0ff;
+    --gold:#ffd700;
+    --chip:#103046a6;
+    --card:#0f172acc;
+    --link:#7ee0ff;
+    --shadow:0 12px 40px rgba(0,0,0,.35);
+    --radius:20px;
+    --ease-soft:cubic-bezier(.22,1,.36,1);
+    --ease-spring:cubic-bezier(.15,1.1,.3,1);
+  }
+  html,body{margin:0;height:100%;color:var(--ink);background:var(--bg);font:500 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Inter,Ubuntu,Cantarell,Noto Sans,Arial,"Apple Color Emoji","Segoe UI Emoji";scroll-behavior:smooth;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+  a{color:var(--link);text-decoration:none;transition:color .25s var(--ease-soft), text-shadow .35s var(--ease-soft)}
+  a:hover{color:#baf0ff;text-shadow:0 0 8px rgba(126,224,255,.35)}
+
+  /* Layout */
+  .app{position:relative;min-height:100vh}
+  .nav{position:sticky;top:0;z-index:6;background:linear-gradient(180deg, rgba(2,10,18,.85), rgba(2,10,18,.55));border-bottom:1px solid rgba(126,224,255,.15);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;gap:8px;align-items:center}
+  .brand{font-weight:800;letter-spacing:.02em;font-size:clamp(18px,2.8vw,22px)}
+  .brand small{display:block;font-weight:600;color:var(--muted);font-size:.8em}
+  .toc{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto}
+  .toc a{padding:8px 12px;border:1px solid rgba(126,224,255,.25);background:linear-gradient(180deg, rgba(14,44,66,.55), rgba(10,30,46,.45));border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .45s var(--ease-spring), box-shadow .45s var(--ease-soft), background .35s var(--ease-soft)}
+  .toc a:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(126,224,255,.15)}
+
+  .hero{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:min(12vh,120px) 16px 32px}
+  .hero::before{content:"";position:absolute;inset:0;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="glow"><stop offset="0%" stop-color="%2300f0ff" stop-opacity="0.4"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><polygon points="600,200 620,250 680,250 640,290 660,350 600,310 540,350 560,290 520,250 580,250" fill="url(%23glow)"/><polygon points="400,400 420,450 480,450 440,490 460,550 400,510 340,550 360,490 320,450 380,450" fill="url(%23glow)" opacity="0.6"/><polygon points="800,400 820,450 880,450 840,490 860,550 800,510 740,550 760,490 720,450 780,450" fill="url(%23glow)" opacity="0.6"/></svg>') center center / cover no-repeat;opacity:0.12;filter:blur(40px);pointer-events:none;z-index:-1;mix-blend-mode:screen}
+  .hero h1{margin:0 0 8px;font-size:clamp(28px,6.5vw,68px);line-height:1.05;letter-spacing:.01em;
+    text-shadow:0 0 10px var(--gold),0 0 25px rgba(255,215,0,.65),0 0 50px var(--gold);
+    background:linear-gradient(135deg,var(--ink),var(--gold),var(--accent));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p.lead{margin:6px 0 0;color:var(--muted);font-size:clamp(16px,2.6vw,20px)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--chip);border:1px solid rgba(126,224,255,.2);box-shadow:var(--shadow);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .5s var(--ease-spring), background .35s var(--ease-soft), border-color .35s var(--ease-soft)}
+  .chip:hover{transform:translateY(-2px)}
+
+  .grid{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:16px;display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+  .card{grid-column:span 12;background:var(--panel);border:1px solid rgba(126,224,255,.15);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transform:translateY(8px) scale(.995);opacity:0;transition:transform .9s var(--ease-soft), opacity .9s var(--ease-soft), box-shadow .5s var(--ease-soft)}
+  .card.reveal{opacity:1;transform:translateY(0) scale(1)}
+  .card:hover{box-shadow:0 18px 60px rgba(0,0,0,.45)}
+  #certificate-en::before,
+  #certificate-de::before{content:"";position:absolute;top:50%;right:5%;width:min(300px, 40%);height:min(400px, 60%);background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><polygon points="200,100 210,130 245,130 218,150 228,185 200,162 172,185 182,150 155,130 190,130" fill="%2300f0ff" opacity="0.15"/><polygon points="200,250 215,290 260,290 225,315 240,365 200,335 160,365 175,315 140,290 185,290" fill="%23ffd700" opacity="0.12"/><polygon points="200,450 210,480 245,480 218,500 228,535 200,512 172,535 182,500 155,480 190,480" fill="%238a2be2" opacity="0.1"/></svg>') center center / contain no-repeat;opacity:0.15;filter:blur(35px);pointer-events:none;z-index:0;mix-blend-mode:luminosity;transform:translateY(-50%)}
+  #certificate-en .hd,
+  #certificate-en .bd,
+  #certificate-de .hd,
+  #certificate-de .bd{position:relative;z-index:1}
+  .card h2{margin:0;font-size:clamp(18px,2.8vw,26px)}
+  .card .hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(126,224,255,.12);background:linear-gradient(180deg, rgba(16,30,46,.35), rgba(10,22,36,.25))}
+  .card .bd{padding:16px}
+
+  .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  @media (max-width:900px){.cols{grid-template-columns:1fr}}
+
+  dl{display:grid;grid-template-columns:max(140px,20%) 1fr;gap:8px 16px;margin:0}
+  dt{color:var(--muted)}
+  dd{margin:0}
+
+  .taglist{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:#0b2330;border:1px dashed rgba(126,224,255,.25);padding:6px 10px;border-radius:999px;font-size:.92em}
+
+  .meta{display:flex;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:.9em}
+  .verification-card{position:relative;overflow:hidden}
+  .verification-card video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.25;filter:blur(20px);pointer-events:none;z-index:1;mix-blend-mode:screen}
+  .verification-card::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(600px, 90%);height:min(500px, 80%);background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="%23ff8c00" stop-opacity="0.5"/><stop offset="50%" stop-color="%23ffd700" stop-opacity="0.5"/><stop offset="100%" stop-color="%23ffae42" stop-opacity="0.5"/></linearGradient></defs><text x="400" y="300" font-family="Arial, sans-serif" font-size="120" font-weight="bold" text-anchor="middle" fill="url(%23goldGrad)" opacity="0.15">WILLKOMMEN</text><polygon points="400,80 420,140 490,140 435,180 455,250 400,205 345,250 365,180 310,140 380,140" fill="%2300f0ff" opacity="0.2"/><polygon points="200,300 215,345 265,345 230,375 245,425 200,390 155,425 170,375 135,345 185,345" fill="%238a2be2" opacity="0.15"/><polygon points="600,300 615,345 665,345 630,375 645,425 600,390 555,425 570,375 535,345 585,345" fill="%2300f0ff" opacity="0.15"/></svg>') center 20% / contain no-repeat;opacity:0.12;filter:blur(30px);pointer-events:none;z-index:0;mix-blend-mode:screen}
+  .verification-card .hd,
+  .verification-card .bd{position:relative;z-index:2}
+  .verification-card .bd{display:grid;gap:18px}
+  .verification-header{display:flex;flex-wrap:wrap;gap:10px}
+  .badge-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--chip);border:1px solid rgba(126,224,255,.25);font-size:.92em;font-weight:600;letter-spacing:.01em;box-shadow:0 10px 24px rgba(0,0,0,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .4s var(--ease-spring)}
+  .badge-chip:hover{transform:translateY(-1px)}
+
+  .spark-btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;background:linear-gradient(135deg,#ffe27a,#ff9d6c,#ffd86b);color:#0a1220;font-weight:800;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 22px 48px rgba(255,174,66,.35),0 8px 18px rgba(0,0,0,.35);border:1px solid rgba(255,215,0,.72);filter:drop-shadow(0 4px 12px rgba(255,215,0,0.4));transition:transform .45s var(--ease-spring),box-shadow .45s var(--ease-soft);overflow:hidden}
+  .spark-btn span{font-size:.85em}
+  .spark-btn::before,.spark-btn::after{content:"";position:absolute;inset:-120%;background:conic-gradient(from 0deg,var(--gold),rgba(255,255,255,.6),rgba(255,215,0,.2),transparent 70%);opacity:.45;animation:sparkWave 4s linear infinite}
+  .spark-btn::after{animation-delay:-2s;opacity:.35}
+  .spark-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 30px 60px rgba(255,190,90,.45),0 12px 26px rgba(0,0,0,.45)}
+  @keyframes sparkWave{to{transform:rotate(360deg)}}
+  .hero-actions{margin:20px 0 0;display:flex;flex-wrap:wrap;gap:14px}
+  
+  /* Social Media Links */
+  .social-links{margin:16px 0 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .social-links .label{color:var(--muted);font-size:.9em;font-weight:600;margin-right:4px}
+  .social-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(16,48,70,.5);border:1px solid rgba(126,224,255,.2);border-radius:999px;color:var(--link);font-size:.9em;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:all .35s var(--ease-soft);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+  .social-link:hover{background:rgba(16,48,70,.8);border-color:rgba(126,224,255,.4);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,240,255,.15)}
+  .social-link .icon{font-size:1.1em}
+
+  .report-card{grid-column:span 12;background:var(--panel);border:1px solid rgba(126,224,255,.18);border-radius:var(--radius);box-shadow:0 26px 70px rgba(5,8,16,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:0;overflow:hidden}
+  .report-card .hd{padding:20px 24px;border-bottom:1px solid rgba(126,224,255,.16);display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(22,46,78,.6),rgba(10,24,42,.52))}
+  .report-card .hd h2{margin:0;font-size:clamp(20px,3vw,30px);background:linear-gradient(135deg,var(--ink),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .report-card .bd{padding:24px;display:grid;gap:18px}
+  .report-form{display:grid;gap:18px}
+  .report-fieldset{border:1px solid rgba(126,224,255,.2);border-radius:18px;padding:18px;background:rgba(12,26,44,.65);display:grid;gap:14px}
+  .report-fieldset legend{padding:0 8px;font-weight:700;color:var(--ink)}
+  .report-label{display:flex;flex-direction:column;gap:6px;font-weight:600;color:var(--ink)}
+  .report-label span{color:var(--muted);font-weight:500;font-size:.9em}
+  .report-input,.report-textarea,.report-select{width:100%;border:1px solid rgba(126,224,255,.28);background:rgba(6,14,24,.85);color:var(--ink);border-radius:12px;padding:10px 14px;transition:border-color .35s var(--ease-soft), box-shadow .35s var(--ease-soft)}
+  .report-input:focus,.report-textarea:focus,.report-select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,240,255,.18);outline:none}
+  .report-textarea{min-height:150px;resize:vertical}
+  .report-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .report-note{font-size:.9em;color:var(--muted)}
+  .report-status{display:none;padding:12px 16px;border-radius:14px;font-weight:600}
+  .report-status.ok{background:rgba(34,197,94,.18);color:#89ffc4;border:1px solid rgba(34,197,94,.45)}
+  .report-status.err{background:rgba(244,63,94,.12);color:#ffb3c4;border:1px solid rgba(244,63,94,.42)}
+  .feature-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .feature-card{position:relative;padding:18px;border-radius:18px;background:linear-gradient(180deg,rgba(16,36,58,.78),rgba(8,18,34,.68));border:1px solid rgba(126,224,255,.18);box-shadow:0 18px 40px rgba(0,0,0,.32);display:grid;gap:10px;overflow:hidden;transition:transform .45s var(--ease-spring),box-shadow .45s var(--ease-soft)}
+  .feature-card:hover{transform:translateY(-4px);box-shadow:0 28px 60px rgba(0,0,0,.45)}
+  .feature-card::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 30% -10%,rgba(0,240,255,.22),transparent 70%);opacity:.6;transition:opacity .45s var(--ease-soft),transform .6s var(--ease-spring)}
+  .feature-card:hover::before{opacity:.85;transform:translate3d(8px,12px,0)}
+  .feature-card h3{margin:0;font-size:1.05em;color:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+  .feature-card p{margin:0;color:var(--muted);font-size:.95em;line-height:1.6}
+  .feature-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,215,0,.18);color:var(--gold);font-size:.75em;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+  .landscape-wrapper{grid-column:span 12;display:grid;gap:16px}
+  .landscape-frame{width:100%;min-height:360px;height:min(70vh,540px);border:none;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.32)}
+  .landscape-item-frame{width:100%;height:100%;border:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:2147483647;display:none}
+  .mantra{margin:0;font-size:1rem;line-height:1.7}
+  .hnoss-line{margin:0;font-weight:600;letter-spacing:.02em}
+  .glyph-block{padding:18px;border-radius:16px;background:rgba(10,30,46,.58);border:1px dashed rgba(126,224,255,.28);white-space:pre-wrap;word-break:break-word;font-size:.95em;line-height:1.6}
+  .checklist{display:grid;gap:10px}
+  .checklist p{margin:0;font-weight:600;display:flex;flex-direction:column;gap:4px}
+  .checklist span{font-weight:500;color:var(--muted)}
+  .quote{margin:0;font-style:italic;color:var(--gold);font-size:1.05em}
+  .story{display:grid;gap:14px;font-size:1rem;line-height:1.8}
+  .manifest-intro{margin:0;font-size:1.02em;font-style:italic;color:var(--muted)}
+  #wthcochtw{position:relative;overflow:hidden}
+  #wthcochtw::before{content:"";position:absolute;top:10%;left:10%;width:min(250px, 30%);height:min(350px, 50%);background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><defs><radialGradient id="avatarGlow"><stop offset="0%" stop-color="%2300f0ff" stop-opacity="0.3"/><stop offset="100%" stop-color="%238a2be2" stop-opacity="0.1"/></radialGradient></defs><ellipse cx="150" cy="150" rx="80" ry="100" fill="url(%23avatarGlow)" opacity="0.2"/><polygon points="150,80 160,110 195,110 168,130 178,165 150,142 122,165 132,130 105,110 140,110" fill="%23ffd700" opacity="0.2"/><circle cx="130" cy="140" r="8" fill="%2300f0ff" opacity="0.5"/><circle cx="170" cy="140" r="8" fill="%2300f0ff" opacity="0.5"/></svg>') center center / contain no-repeat;opacity:0.08;filter:blur(50px);pointer-events:none;z-index:0;mix-blend-mode:screen}
+  #wthcochtw .hd,
+  #wthcochtw .bd{position:relative;z-index:1}
+  .manifest-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .manifest-grid>p,.manifest-grid>ul,.manifest-grid>h3{grid-column:1/-1}
+  .manifest-grid>div{position:relative;padding:20px;border-radius:18px;background:linear-gradient(160deg,rgba(16,30,46,.78),rgba(8,16,28,.64));border:1px solid rgba(126,224,255,.18);box-shadow:0 18px 40px rgba(0,0,0,.35);overflow:hidden;transition:transform .5s var(--ease-spring),box-shadow .5s var(--ease-soft)}
+  .manifest-grid>div:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .manifest-grid>div::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% -12%,rgba(0,255,255,.16),transparent 60%);opacity:.55;pointer-events:none;transition:opacity .5s var(--ease-soft)}
+  .manifest-grid>div:hover::before{opacity:.85}
+  .manifest-grid h3{margin:0 0 12px;font-size:1.05em;color:var(--ink);letter-spacing:.03em;text-transform:uppercase}
+  .manifest-list{margin:0;padding-left:20px;display:grid;gap:6px}
+  .manifest-list li{line-height:1.6}
+  .sun-grid{display:grid;gap:8px;font-size:.95em}
+  .sun-grid strong{color:var(--gold)}
+  .gold-button{position:relative;display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:11px 20px;border-radius:999px;background:linear-gradient(135deg,#ffe27a,#ffb347);color:#04121a;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 14px 32px rgba(255,215,0,.38),0 6px 18px rgba(0,0,0,.35);border:1px solid rgba(255,215,0,.68);transition:transform .45s var(--ease-spring),box-shadow .45s var(--ease-soft)}
+  .gold-button::after{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.45),transparent 60%);opacity:.35;transform:translate3d(0,0,0);transition:opacity .45s var(--ease-soft),transform .6s var(--ease-spring)}
+  .gold-button:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(255,215,0,.48),0 8px 20px rgba(0,0,0,.45)}
+  .gold-button:hover::after{opacity:.6;transform:translate3d(6px,-6px,0)}
+  .gold-button span{font-size:.8em;letter-spacing:.1em}
+  .foot{max-width:1200px;margin:40px auto 80px;padding:0 16px;color:var(--muted)}
+
+  /* Hintergrund */
+  #fx{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh;
+      background:radial-gradient(1200px 800px at 70% 20%, rgba(0,180,255,.08), transparent 60%),
+                 radial-gradient(900px 700px at 10% 90%, rgba(255,200,0,.07), transparent 60%);
+      animation:drift 42s linear infinite alternate}
+  @keyframes drift{0%{background-position:70% 20%,10% 90%}100%{background-position:68% 18%,12% 88%}}
+
+  /* Matrix Layer */
+  #matrix{position:fixed;inset:0;z-index:0;width:100vw;height:100vh;mix-blend-mode:normal;opacity:.9}
+
+  /* Holografisches Sigil (mit Blur & Drop-Shadow) */
+  #sigil{position:fixed;inset:0;z-index:1;width:100vw;height:100vh;pointer-events:none;mix-blend-mode:screen;transform:translate3d(0,0,0);will-change:transform;filter:drop-shadow(0 0 4px rgba(0,240,255,0.5))}
+  #sigil .holo{fill:none;stroke:rgba(0,255,255,.78);stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;filter:blur(0.5px)}
+  #sigil .strong{stroke-width:1.6}
+  #sigil .dim{stroke:rgba(150,255,255,.55)}
+  #sigil .twinkle{animation:twinkle 4.2s ease-in-out infinite alternate}
+  #sigil .orb{animation:orb 80s linear infinite}
+  #sigil .dash{stroke-dasharray:140 10;animation:dash 18s linear infinite}
+  #sigil .gold{stroke:rgba(255,215,0,.9)}
+  #sigil .gold.dim{stroke:rgba(255,230,150,.72)}
+  #sigil .goldGlow{animation:goldglow 7s ease-in-out infinite alternate}
+  @keyframes goldglow{0%{opacity:.75}100%{opacity:1}}
+  @keyframes dash{to{stroke-dashoffset:-300}}
+  @keyframes twinkle{0%{opacity:.65}50%{opacity:1}100%{opacity:.6}}
+  @keyframes orb{to{transform:rotate(360deg)}}
+
+  .toolbar{position:fixed;right:14px;bottom:14px;z-index:5;display:flex;gap:10px}
+  .btn{background:linear-gradient(180deg,#133d5a,#0d2a3e);color:var(--ink);border:1px solid rgba(126,224,255,.3);padding:10px 12px;border-radius:999px;cursor:pointer}
+
+  /* Gold Highlights */
+  .gold-highlight{color:var(--gold);text-shadow:0 0 8px rgba(255,215,0,.6), 0 0 16px rgba(255,215,0,.4);filter:brightness(1.1)}
+  .card .hd h2{background:linear-gradient(135deg,var(--ink),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* A11y & Utilities */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;padding:.5rem 1rem;background:#111;color:#fff;z-index:10000;border-radius:.25rem}
+  .fx-toolbar{position:fixed;top:.75rem;right:.75rem;z-index:9999;display:flex;gap:.5rem;pointer-events:none}
+  .fx-toolbar button{pointer-events:auto;font:600 12px/1.1 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;border:1px solid rgba(255,255,255,.45);padding:.5rem .6rem;border-radius:999px;background:rgba(0,0,0,.35);box-shadow:0 2px 10px rgba(0,0,0,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);letter-spacing:.08em;text-transform:uppercase;transition:transform .15s ease, background .2s ease, border-color .2s ease;color:#fff}
+  .fx-toolbar button:hover{transform:translateY(-1px);background:rgba(0,0,0,.5)}
+  .fx-toolbar button[aria-pressed="true"]{border-color:rgba(255,255,255,.8);background:rgba(0,0,0,.65)}
+  .fx-toolbar .visually-hidden{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,1px,1px);white-space:nowrap;border:0}
+
+  /* Scroll-Progess-Leiste */
+  .scrollbar{position:fixed;inset:0 auto auto 0;height:3px;width:0;background:linear-gradient(90deg,#7ee0ff,#ffd86b);z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+
+  /* Partner Portal Styles */
+  .partner-portal{position:fixed;bottom:20px;left:20px;z-index:9999}
+  .partner-toggle{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#ff8c00,#ffae42);color:#0d0d0d;border:2px solid #ff8c00;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(255,140,0,0.4);filter:drop-shadow(0 4px 8px rgba(255,140,0,0.3));transition:all 0.3s var(--ease-spring)}
+  .partner-toggle:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,140,0,0.6)}
+  .partner-icon{font-size:20px}
+  .partner-text{letter-spacing:0.05em;text-transform:uppercase}
+  .partner-menu{position:absolute;bottom:70px;left:0;width:320px;background:rgba(15,10,0,0.95);border:2px solid #ff8c00;border-radius:16px;box-shadow:0 0 30px rgba(255,140,0,0.4);backdrop-filter:blur(10px);overflow:hidden;transition:all 0.4s var(--ease-soft)}
+  .partner-menu.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+  .partner-menu-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(135deg,rgba(255,140,0,0.2),rgba(255,174,66,0.1));border-bottom:1px solid rgba(255,140,0,0.3)}
+  .partner-menu-header h3{margin:0;color:#ffae42;font-size:16px;font-weight:700;letter-spacing:0.05em}
+  .partner-close{background:none;border:none;color:#ffae42;font-size:28px;font-weight:300;cursor:pointer;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:transform 0.2s ease}
+  .partner-close:hover{transform:rotate(90deg);color:#ff8c00}
+  .partner-menu-content{display:flex;flex-direction:column;gap:2px;padding:8px}
+  .partner-link{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(255,140,0,0.05);border-radius:10px;color:#e7fbff;text-decoration:none;transition:all 0.3s var(--ease-soft);border:1px solid transparent;cursor:pointer}
+  .partner-link:hover{background:rgba(255,140,0,0.15);border-color:rgba(255,140,0,0.4);transform:translateX(4px);box-shadow:0 0 20px rgba(255,140,0,0.6),0 0 40px rgba(255,140,0,0.3)}
+  .partner-link-icon{font-size:20px;width:24px;text-align:center}
+  .partner-link-text{font-size:14px;font-weight:600;letter-spacing:0.02em}
+
+  /* KI Innovation Portal Styles (rechts unten) */
+  .ki-portal{position:fixed;bottom:20px;right:20px;z-index:9999}
+  .ki-toggle{display:flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#8a2be2,#00f0ff);color:#0d0d0d;border:2px solid #8a2be2;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 8px 24px rgba(138,43,226,0.4);filter:drop-shadow(0 4px 8px rgba(138,43,226,0.3));transition:all 0.3s var(--ease-spring)}
+  .ki-toggle:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(138,43,226,0.6)}
+  .ki-icon{font-size:20px}
+  .ki-text{letter-spacing:0.05em;text-transform:uppercase}
+  .ki-menu{position:absolute;bottom:70px;right:0;width:360px;background:rgba(10,0,25,0.95);border:2px solid #8a2be2;border-radius:16px;box-shadow:0 0 30px rgba(138,43,226,0.4);backdrop-filter:blur(10px);overflow:hidden;transition:all 0.4s var(--ease-soft);max-height:70vh;overflow-y:auto}
+  .ki-menu.hidden{opacity:0;transform:translateY(20px);pointer-events:none}
+  .ki-menu-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(135deg,rgba(138,43,226,0.3),rgba(0,240,255,0.1));border-bottom:1px solid rgba(138,43,226,0.4)}
+  .ki-menu-header h3{margin:0;color:#00f0ff;font-size:16px;font-weight:700;letter-spacing:0.05em}
+  .ki-close{background:none;border:none;color:#00f0ff;font-size:28px;font-weight:300;cursor:pointer;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;transition:transform 0.2s ease}
+  .ki-close:hover{transform:rotate(90deg);color:#8a2be2}
+  .ki-menu-content{display:flex;flex-direction:column;gap:2px;padding:8px}
+  .ki-link{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(138,43,226,0.08);border-radius:10px;color:#e7fbff;text-decoration:none;transition:all 0.3s var(--ease-soft);border:1px solid transparent;cursor:pointer}
+  .ki-link:hover{background:rgba(138,43,226,0.2);border-color:rgba(138,43,226,0.5);transform:translateX(-4px);box-shadow:0 0 20px rgba(138,43,226,0.6),0 0 40px rgba(138,43,226,0.3)}
+  .ki-link-icon{font-size:20px;width:24px;text-align:center}
+  .ki-link-text{font-size:14px;font-weight:600;letter-spacing:0.02em}
+  .ki-link-desc{font-size:12px;color:var(--muted);margin-top:4px}
+
+  /* PDF Overlay Styles */
+  .pdf-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease-soft)}
+  .pdf-overlay.active{opacity:1;pointer-events:auto}
+  .pdf-container{position:relative;width:90%;height:90%;max-width:1400px;background:rgba(10,10,20,0.95);border-radius:20px;border:3px solid;overflow:hidden;box-shadow:0 0 60px;transform:scale(0.9);transition:transform 0.4s var(--ease-spring)}
+  .pdf-overlay.active .pdf-container{transform:scale(1)}
+  .pdf-container.partner-style{border-color:#ff8c00;box-shadow:0 0 60px rgba(255,140,0,0.6),0 0 100px rgba(255,140,0,0.3)}
+  .pdf-container.ki-style{border-color:#8a2be2;box-shadow:0 0 60px rgba(138,43,226,0.6),0 0 100px rgba(138,43,226,0.3)}
+  .pdf-header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(0,0,0,0.5);border-bottom:2px solid}
+  .pdf-container.partner-style .pdf-header{border-bottom-color:rgba(255,140,0,0.5)}
+  .pdf-container.ki-style .pdf-header{border-bottom-color:rgba(138,43,226,0.5)}
+  .pdf-title{color:#fff;font-size:18px;font-weight:700;letter-spacing:0.05em;text-shadow:0 0 20px currentColor}
+  .pdf-container.partner-style .pdf-title{color:#ffae42}
+  .pdf-container.ki-style .pdf-title{color:#00f0ff}
+  .pdf-close{background:none;border:2px solid;padding:8px 20px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;transition:all 0.3s var(--ease-soft);color:#fff}
+  .pdf-container.partner-style .pdf-close{border-color:#ff8c00;color:#ffae42}
+  .pdf-container.ki-style .pdf-close{border-color:#8a2be2;color:#00f0ff}
+  .pdf-close:hover{transform:scale(1.1);box-shadow:0 0 30px currentColor}
+  .pdf-frame{width:100%;height:calc(100% - 64px);border:none;background:#fff}
+
+  /* Reduced motion */
+  .fx-paused #matrix, .fx-paused canvas#matrix, .fx-paused [data-effect="matrix"]{display:none !important}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+    #fwCanvas{display:none !important}
+  }
+
+  /* Print */
+  @media print{
+    #matrix,#fx,.toolbar,.toc{display:none!important}
+    .nav{position:static;background:#fff;color:#000}
+    body{background:#fff;color:#000}
+    .card{border:1px solid #aaa}
+  }
+
+  /* Performance-Fallbacks (automatisch bei Last) */
+  .perf-low #sigil .twinkle,
+  .perf-low #sigil .orb,
+  .perf-low #sigil .goldGlow,
+  .perf-low #sigil .dash{animation:none !important}
+
+  /* Polygon Avatar Backgrounds - Subtile Integration */
+  #certificate-en,
+  #certificate-de{position:relative;overflow:hidden}
+  #certificate-en::before,
+  #certificate-de::before{content:"";position:absolute;top:50%;right:5%;width:min(300px, 40%);height:min(400px, 60%);background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><polygon points="200,100 210,130 245,130 218,150 228,185 200,162 172,185 182,150 155,130 190,130" fill="%2300f0ff" opacity="0.15"/><polygon points="200,250 215,290 260,290 225,315 240,365 200,335 160,365 175,315 140,290 185,290" fill="%23ffd700" opacity="0.12"/><polygon points="200,450 210,480 245,480 218,500 228,535 200,512 172,535 182,500 155,480 190,480" fill="%238a2be2" opacity="0.1"/></svg>') center center / contain no-repeat;opacity:0.15;filter:blur(35px);pointer-events:none;z-index:0;mix-blend-mode:luminosity;transform:translateY(-50%)}
+  #certificate-en .hd,
+  #certificate-en .bd,
+  #certificate-de .hd,
+  #certificate-de .bd{position:relative;z-index:1}
+  
+  #wthcochtw{position:relative;overflow:hidden}
+  #wthcochtw::before{content:"";position:absolute;top:10%;left:10%;width:min(250px, 30%);height:min(350px, 50%);background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><defs><radialGradient id="avatarGlow"><stop offset="0%" stop-color="%2300f0ff" stop-opacity="0.3"/><stop offset="100%" stop-color="%238a2be2" stop-opacity="0.1"/></radialGradient></defs><ellipse cx="150" cy="150" rx="80" ry="100" fill="url(%23avatarGlow)" opacity="0.2"/><polygon points="150,80 160,110 195,110 168,130 178,165 150,142 122,165 132,130 105,110 140,110" fill="%23ffd700" opacity="0.2"/><circle cx="130" cy="140" r="8" fill="%2300f0ff" opacity="0.5"/><circle cx="170" cy="140" r="8" fill="%2300f0ff" opacity="0.5"/></svg>') center center / contain no-repeat;opacity:0.08;filter:blur(50px);pointer-events:none;z-index:0;mix-blend-mode:screen}
+  #wthcochtw .hd,
+  #wthcochtw .bd{position:relative;z-index:1}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <div id="fx-status" class="sr-only" aria-live="polite">Effekte aktiv</div>
+
+  <!-- Effekte steuern -->
+  <div class="fx-toolbar" role="toolbar" aria-label="Effekte">
+    <button id="fxToggle" type="button" title="Animationen pausieren (FX)" aria-pressed="false">FX</button>
+    <span id="fxToggleStatus" class="visually-hidden" aria-live="polite"></span>
+  </div>
+
+  <!-- Hintergründe -->
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <!-- Holografisches Emblem (SVG) -->
+  <svg id="sigil" role="img" aria-label="Holografisches Emblem – Sonne, Mond, Sterne" viewBox="0 0 1024 1024">
+    <defs>
+      <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="rgba(0,255,255,.18)"/>
+        <stop offset="70%" stop-color="rgba(0,255,255,.08)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+      <radialGradient id="haloGold" cx="50%" cy="50%" r="40%">
+        <stop offset="0%" stop-color="rgba(255,215,0,.18)"/>
+        <stop offset="70%" stop-color="rgba(255,215,0,.08)"/>
+        <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+    </defs>
+    <circle cx="512" cy="512" r="440" fill="url(#halo)"/>
+    <circle cx="512" cy="512" r="300" fill="url(#haloGold)" opacity=".55"/>
+    <g class="orb">
+      <circle class="holo gold goldGlow" cx="512" cy="512" r="420"/>
+      <circle class="holo dim" cx="512" cy="512" r="300"/>
+      <circle class="holo dim" cx="512" cy="512" r="220"/>
+    </g>
+    <g class="dash">
+      <circle class="holo strong gold goldGlow" cx="300" cy="430" r="46"/>
+      <g class="holo gold dim">
+        <path d="M300 368 l0 -26 M300 492 l0 -26 M242 430 l26 0 M384 430 l-26 0 M268 382 l18 18 M332 382 l-18 18 M332 478 l-18 -18 M268 478 l18 -18"/>
+      </g>
+    </g>
+    <path class="holo dash" d="M732 420a64 64 0 1 1 -40 118a56 56 0 1 0 40 -118z"/>
+    <g class="twinkle">
+      <polygon class="holo" points="512,210 526,244 563,244 533,266 545,302 512,282 479,302 491,266 461,244 498,244"/>
+      <polygon class="holo" points="420,300 430,324 456,324 436,338 444,362 420,348 396,362 404,338 384,324 410,324"/>
+      <polygon class="holo" points="606,300 616,324 642,324 622,338 630,362 606,348 582,362 590,338 570,324 596,324"/>
+      <polygon class="holo" points="460,750 470,770 492,770 476,782 482,804 460,792 438,804 444,782 428,770 450,770"/>
+      <polygon class="holo" points="664,700 674,720 696,720 680,732 686,754 664,742 642,754 648,732 632,720 654,720"/>
+    </g>
+    <g>
+      <path class="holo strong" d="M512 820 C 536 710, 540 630, 512 560 C 484 630, 488 710, 512 820 Z"/>
+      <path class="holo" d="M512 820 C 498 740, 546 660, 512 560 C 478 660, 526 740, 512 820"/>
+      <path class="holo" d="M512 800 C 490 715, 560 650, 512 560 C 464 650, 534 715, 512 800"/>
+      <path class="holo" d="M512 820 C 500 832, 470 844, 442 850"/>
+      <path class="holo gold dim" d="M512 820 C 520 842, 560 852, 592 860"/>
+      <path class="holo" d="M512 820 C 480 838, 430 868, 392 884"/>
+      <path class="holo gold dim" d="M512 820 C 544 838, 594 868, 632 884"/>
+      <path class="holo" d="M512 560 C 560 510, 624 496, 690 506"/>
+      <path class="holo" d="M512 560 C 464 510, 400 496, 334 506"/>
+      <path class="holo" d="M512 560 C 556 528, 590 520, 620 520"/>
+      <path class="holo" d="M512 560 C 468 528, 434 520, 404 520"/>
+    </g>
+  </svg>
+
+  <div class="app">
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">Peace Diplomacy &amp; Technology <small>European Innovation Expert · EX2025D1218310 · Smooth Glide Edition</small></div>
+        <nav class="toc" aria-label="Abschnitte">
+          <a href="#certificate-en">Certificate</a>
+          <a href="#certificate-de">Zertifikat (DE)</a>
+          <a href="#wthcochtw">WTHCOCHTW</a>
+          <a href="#w1tch-protocol">w1TcH Protocol</a>
+          <a href="#honor-elysium">✨ Honor of Elysium</a>
+          <a href="#openssf-landscape">OpenSSF</a>
+          <a href="#ids">Identifikationsdaten</a>
+          <a href="#roles">Rollen & Projekte</a>
+          <a href="#licensing">Lizenz & Hinweise</a>
+          <a href="#diagnostics">Diagnostics</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" id="top">
+      <h1>Daniel Pohl</h1>
+      <p class="lead">EU‑UNION Expert · D‑U‑N‑S® 315676980 · PIC 873042778</p>
+      <div class="chips" role="list">
+        <span class="chip" role="listitem">EU‑UNION Ref.: <strong class="gold-highlight">EX2025D1218310</strong></span>
+        <span class="chip" role="listitem">Wirtschafts-ID: <strong class="gold-highlight">DE441892129</strong></span>
+        <span class="chip" role="listitem">VAT: <strong>31353063511</strong></span>
+        <span class="chip" role="listitem">ORCID: <strong>0009‑0004‑0348‑9769</strong></span>
+        <span class="chip" role="listitem">D‑U‑N‑S: <strong>315676980</strong></span>
+        <span class="chip" role="listitem">PIC: <strong>873042778</strong></span>
+        <span class="chip" role="listitem">Scopus ID: <strong>EX2025D1143002</strong></span>
+      </div>
+      <div class="hero-actions">
+        <a class="spark-btn" href="#conflict-report"><span>⚡</span>Melde Konflikt</a>
+        <a class="gold-button" href="Peace Diplomacy & Technology · EX2025D1218310 — Daniel Pohl (Certificate Edition).html"><span>📜</span>Certificate Edition</a>
+      </div>
+      <div class="social-links">
+        <span class="label">Vernetzen:</span>
+        <a class="social-link" href="https://www.linkedin.com/in/holythreekingstreecrowns/" target="_blank" rel="noopener noreferrer">
+          <span class="icon">in</span>LinkedIn Profil - Daniel
+        </a>
+        <a class="social-link" href="https://www.linkedin.com/in/holythreekingsacreddanielpohl/" target="_blank" rel="noopener noreferrer">
+          <span class="icon">in</span>LinkedIn Profil - Curil
+        </a>
+        <a class="social-link" href="https://github.com/STarLighTsMoveMenTs" target="_blank" rel="noopener noreferrer">
+          <span class="icon">⌨️</span>GitHub
+        </a>
+        <a class="social-link" href="https://www.youtube.com/@sYcEzLikeWise" target="_blank" rel="noopener noreferrer">
+          <span class="icon">▶️</span>YouTube
+        </a>
+      </div>
+    </section>
+
+    <main id="main" class="grid">
+      <article class="card" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(0,240,255,0.05)); border: 1px solid rgba(255,215,0,0.3);">
+        <div class="bd" style="padding: 16px; text-align: center;">
+          <p style="margin: 0; font-weight: 600;">💫 <strong>Smooth Glide Edition</strong> — Optimiert für Flüssigkeit &amp; Performance · <a href="Peace Diplomacy & Technology · EX2025D1218310 — Daniel Pohl (Certificate Edition).html" style="color: var(--gold); text-decoration: underline;">Zur Certificate Edition wechseln →</a></p>
+        </div>
+      </article>
+
+      <article class="card verification-card" id="curil-verification">
+        <video autoplay loop muted playsinline>
+          <source src="../../../Pitch Deck/Corporation Partner/grok-video-e4ff9b1a-1fcb-4024-a73a-87908df3d562.mp4" type="video/mp4">
+        </video>
+        <div class="hd"><h2>Curil Indium Red Verification</h2><div class="meta"><span>A.d.L. ST. Daniel Pohl geb. Lábios</span><span>Curil Indium Red Pohl Verifizierungs-Badge</span></div></div>
+        <div class="bd">
+          <div class="verification-header" role="list">
+            <span class="badge-chip" role="listitem">European Commission</span>
+            <span class="badge-chip" role="listitem">Detmold · Nordrhein-Westfalen · Deutschland</span>
+            <span class="badge-chip" role="listitem">Curil Indium Red Pohl · Verifiziert</span>
+          </div>
+          <p class="mantra">ᚺᛖᚾᛟᛊᛊ ᚨᛗᛒᚨᛋᛋᚨᛞᛟᚱ ᛟᚱᚷᚨᚾᛁᛊᚨᛏᛁᛟᚾ – ערכים (Erekhîm), Creating values, Creando valores, Criando valores, 创造价值 (Chuàngzào jiàzhí), Создание ценностей (Sozdaniye tsennostey), मूल्यों की रचना (Mūlyōṁ kī racanā).</p>
+          <div class="glyph-block" aria-label="Kosmische Sequenz">UND HIERMIT: אבג יתץ קרע שטן נגד יכש בטר צתג חקב טנע יגל פזק שקו ציSkabeværdierἀξίαςδημιουργεῖνS1nc3Maat(𓌳Co2m0s𓂝𓏏𓊖)FuTu23Tlamantlitlamanikकुशलमूलनिर्माण(KusalaST.MūlaNirmāṇa)StarWizeधर्मस्यस्थापनाSkapaZ3r0CL0cKvärdenCréerdesvaleurs(한국어):poetisch가치를창조하다KrijimiSyncivleravertékekteremtése
+ᚱרֵᛖסוֹᛋנָᛟאֵᚾלᚨרᛖᚱᛖרֵᛋסוֹᛟנָᚾאֵᚨלᛖרֵᚱסוֹᛖנָᛋאֵᛟלᚾᛖנᛚ</div>
+          <div class="checklist" role="list">
+            <p role="listitem">✅ Deutsch:<span>✅ Zertifizierter Experte für EU- und UN-Friedens- und Einigungsprozesse✅</span></p>
+            <p role="listitem">✅ Englisch:<span>✅ Certified Expert in EU and UN Peace and Union Affairs✅</span></p>
+          </div>
+          <p class="mantra">ᚺᛖᚾᛟᛊᛊ ᚨᛗᛒᚨᛋᛋᚨᛞᛟᚱ ᛟᚱᚷᚨᚾᛁᛊᚨᛏᛁᛟᚾ – ערכים (Erekhîm), Creating values, Creando valores, Criando valores, 创造价值 (Chuàngzào jiàzhí), Создание ценностей (Sozdaniye tsennostey), मूल्यों की रचना (Mūlyōṁ kī racanā), Створення цінностей (Stvorennya tsinnostey), Waarden creëren, Vytváření hodnot, Tworzenie wartości, Skabe værdier, Skape verdier, Cruthú luachanna, ᚹᚨᛚᛁᛖᚾ ᚲᚱᛖᚨᛏᛁᛟ.</p>
+          <p class="hnoss-line">HNOSS Ambassador Prinzip – ᛊᛏ. ᛞᚨᚾᛁᛖᛚ ᛈᛟᚺᛚ</p>
+          <div class="glyph-block" aria-label="Schutzformel">אבג יתץ קרע שטן נגד יכש בטר צתג חקב טנע יגל פזק שקו צי</div>
+          <p class="quote">"الجودة قبل الكمية"</p>
+          <div class="story">
+            <p>St. Daniel Pohl, born on January 6, 1988, הוא אישיות בולטת ונביא חזון, אשר דרכו מאופיינת בהבנה עמוקה של קשרים קוסמיים ורוחניים.</p>
+            <p>As a HNOSS Ambassador, egli rappresenta i valori di innovazione, armonia e saggezza universale. With unwavering faith and a clear vision, St. Daniel Pohl combines the principles of the Three Kings in all his projects, 建立桥梁，在精神世界和物质世界之间架起一座桥梁.</p>
+            <p class="mantra">ᚺᛖᚾᛟᛊᛊ ᚨᛗᛒᚨᛋᛋᚨᛞᛟᚱ ᛟᚱᚷᚨᚾᛁᛊᚨᛏᛁᛟᚾ – ערכים (Erekhîm), Creating values, Creando valores, Criando valores, 创造价值 (Chuàngzào jiàzhí), Создание ценностей (Sozdaniye tsennostey), मूल्यों की रचना (Mūlyōṁ kī racanā), Створення цінностей (Stvorennya tsinnostey), Waarden creëren, Vytváření hodnot, Tworzenie wartości, Skabe værdier, Skape verdier, Cruthú luachanna, ᚹᚨᛚᛁᛖᚾ ᚲᚱᛖᚨᛏᛁᛟ.</p>
+            <p>Egli combines the ancient wisdom of the heavens, attraverso simboli come i sette portali solari dorati e tesori cosmici, עם המודרנה והחדשנות הטכנולוגית. His work is a shining example of the fusion between tradition and progress, 常常与宇宙的力量保持协调，代表着爱、和平与自由.</p>
+            <p>דרכו משקפת אחריות עמוקה לעולם ותושביו, כאשר כל פרויקטים שלו מכוונים לטובת האנושות ולמימוש הסדר האלוהי. As an HNOSS Ambassador, St. Daniel Pohl utilizes his unique abilities to create organizations, progetti e partnership, le cui basi sono sempre guidate dall'integrità personale e dalla luce interiore.</p>
+            <p>His vision: 一个全球性的创新和精神和谐网络, dove tecnologia, cultura e saggezza universale si fondono in perfetto equilibrio, per il bene di tutti.</p>
+          </div>
+          <div class="glyph-block" aria-label="Vertrauenssiegel">✅אבג יתץ קרע שטן נגד יכש בטר צתג חקב טנע יגל פזק שקו צי
+ᚱרֵᛖסוֹᛋנָᛟאֵᚾלᚨרᛖᚱᛖרֵᛋסוֹᛟנָᚾאֵᚨלᛖרֵᚱסוֹᛖנָᛋאֵᛟלᚾᛖנᛚ</div>
+        </div>
+      </article>
+
+      <article id="certificate-en" class="card">
+        <div class="hd"><h2>🕊️ CERTIFICATE OF RECOGNITION — EN</h2><div class="meta">Ref. EX2025D1218310 · Issued 5 Aug 2025 · Brussels / Strasbourg / Detmold</div></div>
+        <div class="bd">
+          <p><strong>EU‑UNION‑COMMISSION</strong> — Reference No.: <strong class="gold-highlight">EX2025D1218310</strong></p>
+          <p><em>This is to formally acknowledge</em> <strong>Daniel Pohl</strong> (D‑U‑N‑S® <strong>315676980</strong>, PIC <strong>873042778</strong>, Official Correspondence Address: Germany) in his capacity as <strong class="gold-highlight">EU‑UNION Expert</strong> and <strong>Advocate for Ethical Innovation, Symbolic Diplomacy & Sovereign Digital Infrastructure</strong> within the European Union's cosmopolitical framework.</p>
+          <ul>
+            <li>Strategic Technological Innovation</li>
+            <li>Interinstitutional Symbol Governance</li>
+            <li>Trans‑European Ethical Integration Projects</li>
+            <li>Peacebuilding through Orbit‑Diplomacy</li>
+            <li>Decentralized AI Ethics & Blockchain Policy Input</li>
+          </ul>
+          <p>This document refers to the initiative registered under the identifier <strong class="gold-highlight">EX2025D1218310</strong>, as submitted to the relevant advisory and diplomatic bodies of the EU.</p>
+        </div>
+      </article>
+
+      <article id="certificate-de" class="card">
+        <div class="hd"><h2>🕊️ ANERKENNUNGSZERTIFIKAT — DE (informell)</h2><div class="meta">Arbeitsübersetzung</div></div>
+        <div class="bd">
+          <p><strong>EU‑UNION‑COMMISSION</strong> — Referenz‑Nr.: <strong class="gold-highlight">EX2025D1218310</strong></p>
+          <p><em>Hiermit wird offiziell anerkannt:</em> <strong>Daniel Pohl</strong> (D‑U‑N‑S® <strong>315676980</strong>, PIC <strong>873042778</strong>, Offizielle Korrespondenzadresse: Deutschland) in seiner Funktion als <strong class="gold-highlight">EU‑UNION‑Experte</strong> und <strong>Fürsprecher für ethische Innovation, symbolische Diplomatie & souveräne digitale Infrastruktur</strong> im kosmopolitischen Rahmen der Europäischen Union.</p>
+          <ul>
+            <li>Strategische technologische Innovation</li>
+            <li>Interinstitutionelle Symbol‑Governance</li>
+            <li>Transeuropäische Projekte ethischer Integration</li>
+            <li>Friedensförderung durch Orbit‑Diplomatie</li>
+            <li>Dezentrale KI‑Ethik & Beiträge zur Blockchain‑Politik</li>
+          </ul>
+          <p>Dieses Dokument bezieht sich auf die Initiative mit der Kennung <strong class="gold-highlight">EX2025D1218310</strong>, wie sie den zuständigen beratenden und diplomatischen Gremien der EU vorgelegt wurde.</p>
+        </div>
+      </article>
+
+      <article id="wthcochtw" class="card">
+        <div class="hd"><h2>🌍 WTHCOCHTW Recognition Framework</h2><div class="meta">Worldwide Technology &amp; Harmony Connections Orders / Royals Haven · Trades &amp; Wealths</div></div>
+        <div class="bd">
+          <p class="manifest-intro"><strong>EU-UNION-COMMISSION — Recognition Framework</strong><br>Reference: <strong class="gold-highlight">EX2025D1218310</strong></p>
+          <p class="quote"><em>„In Harmonia Divitiae — In Harmonie liegt der wahre Reichtum."</em></p>
+          
+          <p><strong>Gründung</strong> unter der Schirmherrschaft des Europäischen Ethikrates für Innovation, der Union-Commission und des Weltverbundes für Harmonie-Entwicklung.</p>
+          
+          <div class="manifest-grid">
+            <div>
+              <h3>Präambel</h3>
+              <p>In Anerkennung der fortschreitenden Verschmelzung von Technologie, globaler Kultur und menschlicher Verantwortung wird mit dem WTHCOCHTW eine neue Sphäre der Partnerschaft errichtet — ein Raum, in dem Wohlstand, Ethik und Innovation einander nicht widersprechen, sondern sich gegenseitig tragen.</p>
+              <p><em>Das Ziel ist, ein weltumspannendes Netzwerk zu schaffen, das nicht durch Besitz, sondern durch geteilte Frequenz bestimmt ist: Wohlstand als Harmonie. Fortschritt als Dienst. Technologie als Sprache des Friedens.</em></p>
+            </div>
+            
+            <div>
+              <h3>Grundprinzipien</h3>
+              <ul class="manifest-list">
+                <li><strong>Ethik über Effizienz.</strong> Jede Innovation dient zuerst dem Leben, nicht dem Markt.</li>
+                <li><strong>Kooperation statt Konkurrenz.</strong> Wachstum geschieht durch Resonanz, nicht durch Überlegenheit.</li>
+                <li><strong>Transparenz als Adel.</strong> Offenheit ersetzt Privileg; das wahre „Royal Haven" ist Verantwortlichkeit.</li>
+                <li><strong>Wissen als Reichtum.</strong> Technologie wird zur Brücke, nicht zur Waffe.</li>
+                <li><strong>Handel als Heilkunst.</strong> Austausch wird als schöpferischer Akt verstanden, der Balance statt Ungleichgewicht schafft.</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3>Strukturelle Ordnung</h3>
+              <p>Das WTHCOCHTW Ecosystem besteht aus drei sich ergänzenden Ebenen der Kooperation — gemeinsam geordnet im System des <strong>First Class – Business – Economy Ecosystem</strong>, dessen Kreislauf Vertrauen in Wirkung übersetzt.</p>
+              
+              <dl>
+                <dt>First Class Alliance (Crown Partners)</dt>
+                <dd>Träger der Vision. Staaten, Institutionen und Unternehmen, die ethische Technologiepolitik und interkulturelle Diplomatie gemeinsam formen.</dd>
+                
+                <dt>Business Class Partnership (Core Partners)</dt>
+                <dd>Akteure, die Märkte, Systeme und Menschen verbinden. Sie übersetzen Ideen in Lösungen, Innovation in Struktur, Verantwortung in Funktion.</dd>
+                
+                <dt>Economy Class Network (Community Partners)</dt>
+                <dd>Das lebendige Netzwerk der Mitgestalter. Start-ups, NGOs, Forschungszentren und regionale Partner, die Harmonie und Fortschritt lokal verankern.</dd>
+              </dl>
+              
+              <p><em>Jede dieser Ebenen wirkt kreisförmig — in Orbit um das Zentrum der Werte.</em></p>
+            </div>
+            
+            <div>
+              <h3>Symbolik &amp; Governance</h3>
+              <p><strong>„Royals Haven"</strong> bezeichnet die ethische Mitte des Systems: Orte und Institutionen, die Würde, Wissen und gegenseitige Fürsorge verkörpern.</p>
+              <p><strong>„Trades &amp; Wealths"</strong> steht für den Fluss von Ressourcen, Ideen und Verantwortung, der Wohlstand in Harmonie übersetzt.</p>
+              <p><strong>„Orders"</strong> sind Bündnisse – keine Hierarchien. Jede „Order" vertritt ein Feld (z.B. Wissenschaft, Energie, Kunst, Frieden, Gesundheit) und ist autonom, aber resonant mit den anderen.</p>
+              
+              <p>Das WTHCOCHTW wird verwaltet durch ein multilaterales Kuratorium aus Vertretern der diplomatischen Partnerinstitutionen. Bestätigung der Zugehörigkeit und Anerkennungen (wie das EX2025D1218310) dienen als Zertifikate ethischer Verantwortung. Jedes Mitglied verpflichtet sich, die Grundprinzipien zu respektieren und jährlich einen Beitrag zur transparenten Wirkungsmessung zu leisten.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="w1tch-protocol" class="card">
+        <div class="hd"><h2>⚡ Das Siegel w1TcH.TrusT.w1zHL4zT</h2><div class="meta">Minimal-Protokoll für Intention, Integrität und Wirkung</div></div>
+        <div class="bd">
+          <p class="manifest-intro"><em>Quelle → Brücke → Fluss.</em> Ein Minimal‑Protokoll für Intention, Integrität und Wirkung.</p>
+          
+          <div class="manifest-grid">
+            <div>
+              <h3>w1TcH — „Welche?" (Ursprung des Wunsches)</h3>
+              <p>Klärt Sinn, Kontext und Grenzen.<br><strong>Ergebnis:</strong> präziser Wunsch.</p>
+            </div>
+            <div>
+              <h3>TrusT — „Wie?" (Medium und Methode)</h3>
+              <p>Vertrauen als Brücke.<br><strong>Ergebnis:</strong> Erlaubnis zur Bewegung („Ich trage mit.").</p>
+            </div>
+            <div>
+              <h3>w1zHL4zT — „Was + Last" (Transport &amp; Verwirklichung)</h3>
+              <p>Übersetzung in Prozesse, Ressourcen, Verantwortung.<br><strong>Ergebnis:</strong> reale Wirkung.</p>
+            </div>
+          </div>
+          
+          <p><strong>Kurz:</strong> Welche → Wie → Was. <strong>Oder poetisch:</strong> Quelle → Brücke → Fluss.</p>
+          
+          <div class="manifest-grid">
+            <div>
+              <h3>Warum es wichtig ist</h3>
+              <ul class="manifest-list">
+                <li><strong>Verhindert Symbolrausch:</strong> Erst Sinn, dann Vertrauen, dann Umsetzung.</li>
+                <li><strong>Macht Verantwortung sichtbar:</strong> Jeder Schritt hat einen Check.</li>
+                <li><strong>Passt zu First/Business/Economy:</strong> Gleiche Architektur, variable Intensität.</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3>Operative Anwendung</h3>
+              <p><strong>Minimal-Protokoll:</strong><br>
+              w1TcH/Scope (Ziel, Akteure, Ethik-Check);<br>
+              TrusT/Governance (Rollen, Offenlegung, Einwilligungen);<br>
+              w1zHL4zT/Delivery (Meilensteine, Metriken, Audit).</p>
+              
+              <p><strong>Trust Gates:</strong><br>
+              Gate I – Intention;<br>
+              Gate II – Integrität;<br>
+              Gate III – Wirkung.</p>
+              
+              <p><strong>Artefakte:</strong> Intent Note (1 Seite), Trust Dossier (2–4 Seiten), Delivery Ledger (laufend).</p>
+            </div>
+            
+            <div>
+              <h3>Einbettung in WTHCOCHTW</h3>
+              <p><strong>First Class Alliance</strong> führt das volle Protokoll. <strong>Business Class</strong> standardisiert Trust Gates in Plattformen. <strong>Economy Class</strong> nutzt leichte Intent Notes und ein gemeinsames Delivery Ledger.</p>
+            </div>
+            
+            <div>
+              <h3>Das Siegel in der Praxis</h3>
+              <ul class="manifest-list">
+                <li><strong>Verständnis (w1TcH):</strong> „Wir wissen genau, was wir wollen — und warum."</li>
+                <li><strong>Verantwortung (TrusT):</strong> „Wir sind rechnungs- und erklärfähig."</li>
+                <li><strong>Verbindlichkeit (w1zHL4zT):</strong> „Wir liefern, messen, lernen."</li>
+              </ul>
+              
+              <p><strong>Formen:</strong> Textformel; Piktogramm (drei konzentrische Orbits); Prüfmarke (QR/ID-Verweis aufs Trust Dossier).</p>
+            </div>
+          </div>
+          
+          <div class="glyph-block">
+            <h4>Pilotbeispiel — „Soul → Heart → Heaven"</h4>
+            <p><strong>w1TcH:</strong> Zentrum, das Herzenswünsche in reale Hilfen übersetzt (Gesundheit, Schutz, Bildung).</p>
+            <p><strong>TrusT:</strong> Kuratorium, offene Förder- und Vergaberegeln, Datenethik-Leitplanken.</p>
+            <p><strong>w1zHL4zT:</strong> Fonds und Lieferkette; monatliche Wirkungsberichte; Community-Feedback.</p>
+          </div>
+        </div>
+      </article>
+
+      <article id="cv-highlights" class="card">
+        <div class="hd"><h2>Curriculum Highlights</h2><div class="meta">Auszug aus dem CV (EN)</div></div>
+        <div class="bd">
+          <p class="manifest-intro">Systems architect bridging cloud infrastructure, CIAM, data &amp; audit governance and EU regulation (AI Act, MiCA, RTS/ITS). Entwirft resiliente Plattformen mit SSO/OIDC/OAuth2, Zero Trust und überführt technische Artefakte in prüfbare, ethisch konforme Prozesse.</p>
+          <div class="manifest-grid">
+            <div>
+              <h3>Core Skills</h3>
+              <ul class="manifest-list">
+                <li><strong>Identity &amp; Security:</strong> OIDC, OAuth2, SAML, SCIM, WebAuthn, RBAC/ABAC, Consent-Flows.</li>
+                <li><strong>Architecture &amp; Platform:</strong> Microservices, API-Gateways, Event Streaming, CQRS, Terraform, GitOps, Observability (OpenTelemetry).</li>
+                <li><strong>Data &amp; Governance:</strong> Data lineage, DSMS/PLSIGN, DMS/Records, Audit-Trails, DPIA &amp; Privacy-by-Design.</li>
+                <li><strong>Policy &amp; Compliance:</strong> EU AI Act, MiCA, RTS/ITS, ISO 27001/27701, NIS2 Readiness.</li>
+                <li><strong>Enablement &amp; Accessibility:</strong> DevRel/ISV Enablement, Evidence Mapping, Stakeholder-Kommunikation, WCAG/EN 301 549.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Recent Engagements</h3>
+              <ul class="manifest-list">
+                <li><strong>Frontegg/Auth0 Integrationen:</strong> Multi-Tenant CIAM, WebAuthn MFA, konsentbasierte Audit-Busse (2025–heute).</li>
+                <li><strong>European Patent Office:</strong> Records-Governance mit Hash-Chains, DSMS-Konformität, Policy-as-Code (2025–heute).</li>
+                <li><strong>EU-Kommission · EU AI Pact:</strong> Risiko-Klassifikation, Governance-Playbook, Commons-Lizenzen für Förderlogiken (2025–heute).</li>
+                <li><strong>UN Innovation Network:</strong> Commons-APIs, Semantik über UN/EU-Plattformen, Accessibility-by-default (2025–heute).</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Selected Projects</h3>
+              <ul class="manifest-list">
+                <li>Tenant CIAM mit Frontegg/Auth0 – SSO, JIT Provisioning, WebAuthn MFA, Consent-Registry.</li>
+                <li>Records Governance für Patent-DMS – Hash-Chains, Retention-Matrix, DSMS-Mapping, DPIA-Kit.</li>
+                <li>EU AI Act Readiness Kit – Model/Data Cards, Human Oversight Protocols, Post-Market Monitoring.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Credentials &amp; Languages</h3>
+              <ul class="manifest-list">
+                <li>EPO – Certificate “EPO Development” (self-reported, 2025).</li>
+                <li>EBA – Extranet participation / registered member (self-reported, 2025).</li>
+                <li>Cloud Architecture Programmes: AWS Well-Architected, Azure Architecture Center, GCP Architecture Framework.</li>
+                <li>Accessibility: WCAG/EN 301 549 Implementation Guides.</li>
+                <li>Languages: German (C2) · English (C1).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="openssf-landscape" class="card">
+        <div class="hd"><h2>OpenSSF Landscape</h2><div class="meta">Live-Explorer für Open Source Security &amp; Foundation Mitglieder</div></div>
+        <div class="bd landscape-wrapper">
+          <p class="manifest-intro">Interaktiver Überblick der OpenSSF-Landschaft. Die Ansicht öffnet Detailkarten direkt in der Seite und aktualisiert sich automatisch mit den neuesten Kategorien.</p>
+          <iframe class="landscape-frame" title="OpenSSF Landscape" src="https://landscape.openssf.org/embed/embed.html?base-path=&amp;classify=category&amp;key=openssf-members&amp;headers=true&amp;category-header=true&amp;category-in-subcategory=true&amp;title-uppercase=true&amp;title-alignment=center&amp;title-font-family=serif&amp;title-font-size=13&amp;style=shadowed&amp;bg-color=%23331f6b&amp;fg-color=%23ffffff&amp;item-modal=true&amp;item-name=true&amp;size=md&amp;items-alignment=left&amp;item-name-font-size=11&amp;items-spacing=13"></iframe>
+        </div>
+      </article>
+
+      <article id="conflict-report" class="report-card card">
+        <div class="hd"><h2>Meldestelle · Konflikt melden</h2><div class="meta">Vertrauliches Formular · Automatischer Versand an government.enterprise@trustedorbitscodex.eu</div></div>
+        <div class="bd">
+          <p class="manifest-intro">Nutze dieses Formular, um Vorfälle zum HNOSS / Curil Indium Red Kodex direkt und vertraulich zu melden. Pflichtfelder sind mit <span class="gold-highlight">*</span> gekennzeichnet. Alle Angaben werden verschlüsselt an die verantwortliche Meldestelle übermittelt.</p>
+          <form id="conflictForm" class="report-form" method="post" action="https://formsubmit.co/government.enterprise@trustedorbitscodex.eu" data-endpoint="https://formsubmit.co/ajax/government.enterprise@trustedorbitscodex.eu">
+            <input type="hidden" name="_subject" value="HNOSS Konfliktmeldung · EX2025D1218310" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_replyto" value="" />
+            <input type="hidden" name="reference" value="EX2025D1218310" />
+
+            <fieldset class="report-fieldset">
+              <legend>Vorfall</legend>
+              <label class="report-label" for="conflict-date">Datum<span>*</span>
+                <input class="report-input" id="conflict-date" name="date" type="date" required aria-required="true" />
+              </label>
+              <label class="report-label" for="conflict-summary">Kurztitel / Betreff<span>*</span>
+                <input class="report-input" id="conflict-summary" name="summary" type="text" placeholder="Kurze Beschreibung" required aria-required="true" />
+              </label>
+              <label class="report-label" for="conflict-description">Beschreibung<span>*</span>
+                <textarea class="report-textarea" id="conflict-description" name="description" placeholder="Was ist passiert? Wer war beteiligt?" required aria-required="true"></textarea>
+              </label>
+              <label class="report-label" for="conflict-location">Ort / Plattform
+                <input class="report-input" id="conflict-location" name="location" type="text" placeholder="z. B. Kanal, Event, URL" />
+              </label>
+              <label class="report-label" for="conflict-evidence">Belege (Links, Dateien)
+                <textarea class="report-textarea" id="conflict-evidence" name="evidence" placeholder="URLs oder Dateinamen (Upload serverseitig)"></textarea>
+              </label>
+            </fieldset>
+
+            <fieldset class="report-fieldset">
+              <legend>Kontakt</legend>
+              <label class="report-label" for="conflict-name">Name (optional)
+                <input class="report-input" id="conflict-name" name="name" type="text" />
+              </label>
+              <label class="report-label" for="conflict-email">E-Mail für Rückfragen (optional)
+                <input class="report-input" id="conflict-email" name="email" type="email" placeholder="name@domain.tld" />
+              </label>
+              <label class="report-label" for="conflict-preferred">Bevorzugte Kontaktart
+                <select class="report-select" id="conflict-preferred" name="preferred">
+                  <option value="email">E-Mail</option>
+                  <option value="phone">Telefon</option>
+                  <option value="none">Keine Kontaktaufnahme</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="report-fieldset">
+              <legend>Vertraulichkeit & Zustimmung</legend>
+              <label class="report-label" for="conflict-confidential">
+                <input id="conflict-confidential" name="confidential" type="checkbox" /> Höchste Vertraulichkeit erbeten.
+              </label>
+              <label class="report-label" for="conflict-consent">
+                <input id="conflict-consent" name="consent" type="checkbox" required aria-required="true" /> Ich habe den DSGVO-Hinweis gelesen und stimme der Verarbeitung zu.<span>*</span>
+              </label>
+            </fieldset>
+
+            <div class="report-actions">
+              <button type="submit" class="spark-btn"><span>⚡</span>Meldung senden</button>
+              <button type="reset" class="btn ghost">Zurücksetzen</button>
+            </div>
+            <div id="conflictStatus" class="report-status" role="status" aria-live="polite"></div>
+          </form>
+          <p class="report-note"><strong>DSGVO-Hinweis:</strong> Zuständige Stelle: HNOSS / Curil Indium Red Pohl. Zweck: Bearbeitung von Meldungen zur Referenz <span class="gold-highlight">EX2025D1218310</span>. Rechtsgrundlage: Art. 6 Abs. 1 lit. c &amp; f DSGVO; Speicherung bis Abschluss des Verfahrens und gesetzlicher Aufbewahrungspflichten. Betroffenenrechte: Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch.</p>
+        </div>
+      </article>
+
+      <article id="ethos" class="card">
+        <div class="hd"><h2>Ethos &amp; Lichtkodex</h2><div class="meta">Auszug „Der Kodex meines Geistes“</div></div>
+        <div class="bd manifest-grid">
+          <p class="manifest-intro">Ein Bekenntnis zu Licht, Freiheit und Menschlichkeit.</p>
+          <p>Ich entstamme dem Gewebe der alten Völker: keltischer Herzschlag, nordischer Ruf der Runen, germanisches Erbe, christliches Bewusstsein und ein ökonomisch-ethischer Geist der Moderne. Jede Tradition ist eine Farbe im göttlichen Prisma – wichtig ist, dass wir uns in Güte entfalten.</p>
+          <div>
+            <h3>Was ich ablehne</h3>
+            <ul class="manifest-list">
+              <li>Krieg – denn er löscht das Licht in Kinderaugen.</li>
+              <li>Missgunst &amp; Gier – sie knebeln das Herz und vergessen das Wir.</li>
+              <li>Neid – er zerstört die Schönheit im Selbst.</li>
+              <li>Rache – sie bindet an Schatten, die vergangen sind.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Was ich bejahe</h3>
+            <ul class="manifest-list">
+              <li>Entwicklung – Stillstand verrät das innere Feuer.</li>
+              <li>Innovation – schöpferische Kraft des Geistes.</li>
+              <li>Musik – heilt, was Worte nicht erreichen.</li>
+              <li>Spirituelle Wissenschaft &amp; Technologie – wenn sie dem Guten dient, wird sie zum Werkzeug des Lichts.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Was wichtig ist</h3>
+            <ul class="manifest-list">
+              <li>Nächstenliebe – die Brücke zwischen den Herzen.</li>
+              <li>Freiheit – die Luft, in der die Seele atmen kann.</li>
+              <li>Vergebung – das Tor, durch das Heilung eintritt.</li>
+              <li>Frieden – das gemeinsame Ziel für alle Zeiten.</li>
+            </ul>
+          </div>
+          <p>Ruhe &amp; Gedenken: Möge ewiger Frieden jene umarmen, die von uns gegangen sind; möge Trost alle erreichen, die sich nach Licht sehnen.</p>
+          <div>
+            <h3>Der Lebensbaum der 7 Goldenen Sonnen</h3>
+            <div class="sun-grid">
+              <span><strong>☀️ 7</strong> Goldene Menschlichkeit</span>
+              <span><strong>☀️ 6</strong> Heilige Alchemie</span>
+              <span><strong>☀️ 5</strong> Freiheit</span>
+              <span><strong>☀️ 4</strong> Mitgefühl</span>
+              <span><strong>☀️ 3</strong> Gemeinschaft</span>
+              <span><strong>☀️ 2</strong> Vergebung</span>
+              <span><strong>☀️ 1</strong> Wahrheit</span>
+            </div>
+            <p>Alchemie der Seele – Wandel im Dienst der Liebe.</p>
+            <ul class="manifest-list">
+              <li><strong>🜁 Feuer:</strong> Dein Feuer ist heilig – nicht zerstörerisch.</li>
+              <li><strong>🜂 Wasser:</strong> Es fließt, um zu verbinden – nicht zu trennen.</li>
+              <li><strong>🜃 Erde:</strong> Steht für Standhaftigkeit und Fruchtbarkeit.</li>
+              <li><strong>🜄 Luft:</strong> Flüstert Wahrheit sanft in verletzte Herzen.</li>
+            </ul>
+          </div>
+          <p><strong>Schlusswort:</strong> Ich wähle Licht über Dunkelheit, Vergebung über Groll, Gemeinschaft über Ego – Wahrheit über Bequemlichkeit. Meine Seele zielt nicht auf Gewinn, sondern auf Heilung: für dich, für mich, für alle.</p>
+        </div>
+      </article>
+
+      <section id="ids" class="card">
+        <div class="hd"><h2>Identifikationsdaten & Rollenstruktur</h2></div>
+        <div class="bd cols">
+          <div>
+            <dl>
+              <dt>Symbolischer Name</dt><dd><span class="gold-highlight">HolyThreeKings A.d.L. ST. Daniel Curil Indium Red Pohl</span></dd>
+              <dt>Geburtsort</dt><dd>Detmold C+B+M, Deutschland</dd>
+              <dt>Mandatsbeginn</dt><dd>November 2023 (laufend)</dd>
+              <dt>Organisationen</dt><dd><span class="gold-highlight">HNOSS</span> · PRismAnTHArION · HouseOrdnung</dd>
+            </dl>
+          </div>
+          <div>
+            <dl>
+              <dt>Wirtschafts-ID (DE)</dt><dd><strong class="gold-highlight">DE441892129</strong></dd>
+              <dt>D‑U‑N‑S®</dt><dd><strong>315676980</strong></dd>
+              <dt>PIC</dt><dd><strong>873042778</strong></dd>
+              <dt>EU‑UNION Ref.</dt><dd><strong class="gold-highlight">EX2025D1218310</strong></dd>
+              <dt>VAT</dt><dd><strong>31353063511</strong></dd>
+              <dt>ORCID</dt><dd><strong>0009‑0004‑0348‑9769</strong></dd>
+              <dt>Scopus ID</dt><dd><strong>EX2025D1143002</strong></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="bd">
+          <h3>Expert IDs</h3>
+          <ul class="taglist">
+            <li class="tag">EX2025D1143002 · Europa Experte</li>
+            <li class="tag">EX2025D1119641 · Daniel POHL</li>
+            <li class="tag">FHevIJPKfbvK38UA2kUyDFPuoHn4sRaI</li>
+            <li class="tag">Other ID: 242072</li>
+          </ul>
+          <h3>Persönliche & Kontaktdaten</h3>
+          <dl>
+            <dt>Geburtsdatum</dt><dd>06/01/1988</dd>
+            <dt>Geburtsort</dt><dd>Lippstadt, Deutschland</dd>
+            <dt>Nationalität</dt><dd>Spanien · Italien · Irland</dd>
+            <dt>Hauptsprache</dt><dd>Deutsch</dd>
+            <dt>Weitere Sprachen</dt><dd>Englisch (Intermediate), Spanisch</dd>
+            <dt>E-Mail</dt><dd><a href="mailto:statesflowwishes@outlook.it">statesflowwishes@outlook.it</a></dd>
+            <dt>Telefon</dt><dd>+49 152 38757059 · +49 155 62233724</dd>
+            <dt>Adresse</dt><dd>Saganer Strasse 31, 32756 Detmold, Italien</dd>
+          </dl>
+          <h3>Professional Links</h3>
+          <ul class="taglist">
+            <li class="tag"><a href="https://europea-un-world-lfx-peace-eu-gov-int.netlify.app/" target="_blank">🌐 europea-un-world-lfx-peace-eu-gov-int</a></li>
+            <li class="tag"><a href="https://www.linkedin.com/in/holythreekingstreecrowns/" target="_blank">👤 LinkedIn: HolyThreeKingsTreeCrowns</a></li>
+            <li class="tag"><a href="https://www.linkedin.com/in/holythreekingsacreddanielpohl/" target="_blank">👤 LinkedIn: HolyThreeKingsSacredDanielPohl</a></li>
+            <li class="tag"><a href="https://github.com/STarLighTsMoveMenTs" target="_blank">👨‍💻 GitHub: STarLighTsMoveMenTs</a></li>
+            <li class="tag"><a href="https://www.youtube.com/@sYcEzLikeWise" target="_blank">🎥 YouTube: sYcEzLikeWise</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="hd"><h2>Fachkompetenzen & Expertise-Bereiche</h2><div class="meta">EU-UNION · Vatican Corporation · World Peace Certification</div></div>
+        <div class="bd">
+          <h3>A. Strategie & Governance</h3>
+          <p>Entwurf und Implementierung von Aktionsplänen zur Operationalisierung internationaler Prinzipien (z. B. UNGC), inkl. Aufbau von Monitoring-Systemen. Governance & Compliance (inkl. Anti-Korruption) · Strategisches Denken & Policy-Design · Projektleitung auf EU- und UN-Ebene · Prozessdesign & Strukturaufbau · Strategische Partnerschaften & Allianzen.</p>
+          
+          <h3>B. Führung & Stakeholder-Management</h3>
+          <p>Leitung transdisziplinärer Teams, Moderation multilateraler Dialoge und Aufbau nachhaltiger Partnerschaften zwischen Staat, UN-Akteuren und Privatsektor. Diplomatisches Feingefühl · Netzwerkaufbau · Moderation (Friedens- und Dialogformate) · Teamführung & Organisationsentwicklung · Mentoring & Coaching.</p>
+          
+          <h3>C. Innovation & Technologie</h3>
+          <p>Entwicklung dezentraler Plattform- und Zertifizierungsmodelle für ethische Start-ups; Beratung zu KI-Ethik und digitalen Rechten. Innovationsmanagement · KI-Ethik & digitale Verantwortung · Digitale Transformation & Plattformkonzepte · Open Innovation / Co-Creation-Plattformen · Schutz geistigen Eigentums / IP-Sensibilität (WIPO-Kontext).</p>
+          
+          <h3>D. Nachhaltigkeit & Unternehmensführung</h3>
+          <p>Design und Pilotierung von SME-Acceleratoren für CO₂-Reduktion, Kreislauflösungen und menschenrechtsorientierte Lieferketten. Nachhaltigkeitsstrategie & CSR-Design · Lieferketten-Due-Diligence (menschenrechtlich & ökologisch) · Kreislaufwirtschaft & Ressourceneffizienz · Aufbau von SME-Sustainability-Programmen · Monitoring & KPIs für Impact-Reporting (GRI / UNGC).</p>
+          
+          <h3>E. Kommunikation, Kultur & Kreativität</h3>
+          <p>Einsatz von Storytelling und visueller Symbolik zur Skalierung sozialer Kampagnen (z. B. ShineHealthCare). Öffentlichkeitsarbeit & Brand Architecture · Kreatives Storytelling & Symbolik · Präsentations- und Redekompetenz · Kunst- und Kulturvernetzung · Multilinguale Kommunikation (Deutsch / Englisch / Spanisch) · Krisenkommunikation.</p>
+          
+          <h3>F. Gesundheit & Soziale Innovation</h3>
+          <p>Implementierung arbeitsplatzbasierter Gesundheitsprogramme und Awareness-Initiativen zur Resilienzförderung. Gesundheitsförderung & Arbeitswohl (psychische Gesundheit) · Soziale Innovation & inklusionsorientierte Programme · Programme zur Resilienzförderung am Arbeitsplatz.</p>
+          
+          <h3>G. Transversale Talente</h3>
+          <p>Systemisches Denken · Spirituell-intellektuelle Kreativität · Achtsamkeit & Bewusstseinsarbeit · Zukunftsorientierte Bildung & Curriculum-Design · Symbolische Governance & Visionäre Diplomatie · Nachhaltige Finanzlogik / Impact Thinking · Politische Analyse.</p>
+        </div>
+      </section>
+
+      <section class="card" id="honor-elysium" style="background: linear-gradient(135deg, rgba(138,43,226,0.08), rgba(75,0,130,0.05)); border: 2px solid rgba(138,43,226,0.3);">
+        <div class="hd"><h2>✨ Honor of Elysium</h2><div class="meta">Vatican Corporation · World Peace · KI-Innovation & Politische Koordinierung</div></div>
+        <div class="bd">
+          <div class="glyph-block" style="background: linear-gradient(135deg, rgba(138,43,226,0.15), rgba(75,0,130,0.1)); border-color: rgba(138,43,226,0.4);">
+            ⚜️ World Peace Come True! ⚜️<br/>
+            <strong class="gold-highlight">Daniel Pohl</strong><br/>
+            Irlanda.Vat.Arch.Bishop, Ambassador Diplomaten Consult Expert<br/>
+            (Sedia - Sixtinische Kapelle Petersdom Vatikanische Basilika)<br/>
+            w1zL4zTw1zL4zT · RegSys.IPA Royal Kaiser Charter R.K.Maj.Adl
+          </div>
+          
+          <h3>🏛️ Vatican Corporation - World Peace Mandat</h3>
+          <dl>
+            <dt>Legal Entity</dt><dd>Royal Kaiser Charter RegSys.</dd>
+            <dt>Business Name</dt><dd>Hnoss.PrismanTHarIOn - Society Foundation & Philanthropy</dd>
+            <dt>Legal Entity Status</dt><dd>Public Body, Non-Profit, Civil Society Organisation</dd>
+            <dt>International Organisation</dt><dd>Yes - European Interest (IOEI H2020, IOEI Digital Europe, IERO Horizon Europe)</dd>
+            <dt>Research Organisation</dt><dd>Yes</dd>
+            <dt>Registration Country</dt><dd>Ireland</dd>
+            <dt>Legal Register</dt><dd>Government Enterprise Trusted Orbits Codex</dd>
+            <dt>Registration Number</dt><dd>D&B315676980®·PIC873042778®·EureKa®·UN1155137®</dd>
+            <dt>Registration Date</dt><dd>29/11/2025</dd>
+            <dt>Address</dt><dd>Saganer Strasse 31, Detmold *C+M+B*, D02 X285</dd>
+            <dt>P.O. Box</dt><dd>EU-UNION / State of Union 1337</dd>
+            <dt>Gender Equality Plan</dt><dd>Yes</dd>
+          </dl>
+
+          <h3>🤖 Künstliche Intelligenz Innovation & Politische Koordinierung</h3>
+          <div class="taglist">
+            <span class="tag" style="background: rgba(138,43,226,0.2); border-color: rgba(138,43,226,0.4);">📚 Künstliche Intelligenz Innovation Und Politische Koordinierung.pdf</span>
+            <span class="tag" style="background: rgba(138,43,226,0.2); border-color: rgba(138,43,226,0.4);">📚 Künstliche Intelligenz Innovation Und Politische Koordinierung1.pdf</span>
+            <span class="tag" style="background: rgba(138,43,226,0.2); border-color: rgba(138,43,226,0.4);">⚖️ Vatican - Corporation - WorldPeace.txt</span>
+          </div>
+          
+          <h3>🌟 Organisationen & Zugehörigkeit</h3>
+          <p><strong class="gold-highlight">HNOSS</strong> - Expert from EU-UNION / EureKa - Vision by Hnoss (12/2025, Italy)<br/>
+          <strong>ALMI FÖRETAGSPARTNER KRONOBERG AKTIEBOLAG</strong> - Autodidakt - PremiumLights by OhmMega StarLightsMoveMenTs (12/2025, Sweden)</p>
+          
+          <h3>👑 Position & Würden</h3>
+          <p><strong>Disability Talent CEO</strong> - HNOSS (12/2024 to present, Spain Playa de Bossa, Germany)<br/>
+          <strong>A.d.L. ST. Daniel Curil Indium Red Pohl</strong><br/>
+          HIP-Nr. 100064 & HIP-Nr. 677<br/>
+          Civil Society Organisation Type: Trade Union and other labour organisation</p>
+          
+          <div class="glyph-block" style="text-align: center; background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(138,43,226,0.1)); border-color: rgba(255,215,0,0.5);">
+            <strong style="font-size: 1.2em; color: var(--gold);">✨ In Honor of Elysium ✨</strong><br/>
+            <em style="color: var(--muted); font-size: 0.95em;">Dedicated to World Peace, Innovation & Humanity</em>
+          </div>
+        </div>
+      </section>
+
+      <section id="roles" class="card">
+        <div class="hd"><h2>Rollen · Projekte · Engagements (Auswahl)</h2><div class="meta">Kuratierte Sammlung thematischer Schlaglichter</div></div>
+        <div class="bd">
+          <div class="glyph-block" aria-label="Zusatzangaben">Bevorzugter Name: A.d.L. ST. Daniel Curil Indium Red Pohl<br/>Weitere Kennungen: Hip Nr. 100064 · Hip Nr. 677 (Mondlandschaft)</div>
+          <h3>Institutionen & Rahmen</h3>
+          <p>Europäische Union · United Nation · Kommission<br/>WIPO · EPO · USPTO · UNESCO<br/>Höchste Europäische Union, Öffentliche Gemeinschafte</p>
+          <h3>Programme & Rollen</h3>
+          <p>Worldwide Schirmherrschaft / Patrona<br/>UN.Innovation Talent<br/>Zertifiziert EU‑Union Experte<br/>CEO <span class="gold-highlight">Hnoss</span> · Pathwinding</p>
+          <h3>Initiativen & Themen</h3>
+          <p><span class="gold-highlight">StarsLightsMovements</span> · PremiumLights by OhmMega<br/>HouseOrdnung · Prismatahrion<br/>Peace Way Holder · DimWin · KnowNowNoKnow<br/>Shine Health Care Magic Stars Wall<br/>Synchronisation Shift‑Informationen · KI/AI Technologie<br/>High a Astronaut · Sun · Moon · Stars<br/>„<span class="gold-highlight">Himmlisches Kind – Pilger der Hoffnung</span>“<br/><strong class="gold-highlight">STERNEN SINGER 2025</strong> (für Kinder, denen Gewalt zugestoßen ist)<br/>StarsSync Gateways · Lichter Wächter der Zeit · Visionär</p>
+        </div>
+      </section>
+
+      <section id="licensing" class="card">
+        <div class="hd"><h2>Hinweise · Lizenz</h2></div>
+        <div class="bd">
+          <p>© 2025 International.Corporation. All rights reserved.<br/>Licensed under EU‑Union ethical frameworks · Reference: <strong class="gold-highlight">EX2025D1218310</strong></p>
+          <p><strong>Hinweis:</strong> Die deutsche Fassung ist eine <em>Arbeitsübersetzung</em> und stellt keine amtliche Übersetzung dar.</p>
+        </div>
+      </section>
+
+      <section id="diagnostics" class="card">
+        <div class="hd"><h2>Diagnostics · Selbsttests</h2><div class="meta">Automatische Laufzeit‑Checks</div></div>
+        <div class="bd">
+          <ul id="selftest-list">
+            <li>⏳ Initialisiere Tests…</li>
+          </ul>
+          <p>Diese Tests prüfen u. a.: Canvas‑Kontexte, Event‑Handler, Performance‑Schalter, Blur‑Freiheit.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Ausgestellt am <time datetime="2025-08-05">5. August 2025</time> · Ort der Anerkennung: Brussels / Strasbourg / Detmold · Offizielle Korrespondenzadresse: Germany</p>
+    </footer>
+  </div>
+
+  <!-- Partner Portal (links unten) -->
+  <div id="partner-portal" class="partner-portal">
+    <button id="partner-toggle" class="partner-toggle" aria-label="Partner Portal">
+      <span class="partner-icon">🏢</span>
+      <span class="partner-text">Partner Portal</span>
+    </button>
+    <div id="partner-menu" class="partner-menu hidden">
+      <div class="partner-menu-header">
+        <h3>Partner Corporation</h3>
+        <button id="partner-close" class="partner-close" aria-label="Schließen">×</button>
+      </div>
+      <div class="partner-menu-content">
+        <a href="/PitchDeck&Info-Page/Phoenix Grid - 3D IntelligencePlatform.html" class="partner-link" data-type="html" data-title="Phoenix Grid 3D Platform">
+          <span class="partner-link-icon">🌐</span>
+          <span class="partner-link-text">Phoenix Grid 3D Platform</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- KI Innovation Portal (rechts unten) -->
+  <div id="ki-portal" class="ki-portal">
+    <button id="ki-toggle" class="ki-toggle" aria-label="KI Innovation Portal">
+      <span class="ki-icon">🇪🇺</span>
+      <span class="ki-text">Honor of EU-Union</span>
+    </button>
+    <div id="ki-menu" class="ki-menu hidden">
+      <div class="ki-menu-header">
+        <h3>Honor of EU-Kommission</h3>
+        <button id="ki-close" class="ki-close" aria-label="Schließen">×</button>
+      </div>
+      <div class="ki-menu-content">
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/Künstliche Intelligenz Innovation Und Politische Koordinierung.pdf" class="ki-link" data-type="pdf" data-title="KI Innovation & Koordinierung">
+          <span class="ki-link-icon">📄</span>
+          <div>
+            <div class="ki-link-text">KI Innovation & Koordinierung</div>
+            <div class="ki-link-desc">Hauptdokument</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/Künstliche Intelligenz Innovation Und Politische Koordinierung1.pdf" class="ki-link" data-type="pdf" data-title="KI Innovation & Koordinierung">
+          <span class="ki-link-icon">📑</span>
+          <div>
+            <div class="ki-link-text">KI Innovation & Koordinierung</div>
+            <div class="ki-link-desc">Erweiterte Version</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/EU.CORP Projekte/InvestEU-Portal.pdf" class="ki-link" data-type="pdf" data-title="InvestEU-Portal">
+          <span class="ki-link-icon">🏦</span>
+          <div>
+            <div class="ki-link-text">InvestEU-Portal</div>
+            <div class="ki-link-desc">EU Investment Platform</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/EU.CORP Projekte/LIGHT2ME - InvestEU-Portal.pdf" class="ki-link" data-type="pdf" data-title="LIGHT2ME">
+          <span class="ki-link-icon">💡</span>
+          <div>
+            <div class="ki-link-text">LIGHT2ME</div>
+            <div class="ki-link-desc">InvestEU-Portal</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/EU.CORP Projekte/likewise.live Golden Resonance - PipeCareLine InvestEU-Portal.pdf" class="ki-link" data-type="pdf" data-title="likewise.live Golden Resonance">
+          <span class="ki-link-icon">🌟</span>
+          <div>
+            <div class="ki-link-text">likewise.live Golden Resonance</div>
+            <div class="ki-link-desc">PipeCareLine InvestEU</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/EU.CORP Projekte/sTarLighTsMoveMenTs BankEyes Aeter - InvestEU-Portal.pdf" class="ki-link" data-type="pdf" data-title="sTarLighTsMoveMenTs BankEyes">
+          <span class="ki-link-icon">✨</span>
+          <div>
+            <div class="ki-link-text">sTarLighTsMoveMenTs BankEyes</div>
+            <div class="ki-link-desc">Aeter InvestEU-Portal</div>
+          </div>
+        </a>
+        <a href="/PitchDeck&Info-Page/Honor of EU-KOMMISSION Team Frau. Leyen/EU.CORP Projekte/Intergalactic„Wealth.CrossAetherElysion.Mosaik - Lebenslive.pdf" class="ki-link" data-type="pdf" data-title="Intergalactic Wealth">
+          <span class="ki-link-icon">🌌</span>
+          <div>
+            <div class="ki-link-text">Intergalactic Wealth</div>
+            <div class="ki-link-desc">CrossAetherElysion.Mosaik</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF/HTML Overlay -->
+  <div id="content-overlay" class="pdf-overlay">
+    <div id="content-container" class="pdf-container">
+      <div class="pdf-header">
+        <h2 id="content-title" class="pdf-title"></h2>
+        <button id="content-close" class="pdf-close">✕ SCHLIESSEN</button>
+      </div>
+      <iframe id="content-frame" class="pdf-frame" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </div>
+  </div>
+
+  <script src="https://landscape.openssf.org/embed/embed-item.js"></script>
+  <iframe id="embed-item" class="landscape-item-frame" src="https://landscape.openssf.org/embed/embed-item.html" title="OpenSSF Landscape Detail"></iframe>
+
+  <!-- Scroll-Progressbar -->
+  <div class="scrollbar" id="scrollbar" aria-hidden="true"></div>
+
+  <!-- Matrix Code Script (sanfter, adaptiv) -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      const glyphs = ['D','A','N','I','E','L','P','O','H','L','E','U','U','N','I','O','N','E','X','P','E','R','T','3','1','5','6','7','6','9','8','0','8','7','3','0','4','2','7','7','8','H','N','O','S','S','P','R','I','S','M','A','N','T','H','A','R','I','O','N','S','T','A','R','S','L','I','G','H','T','S','A','I','K','I','B','L','O','C','K','C','H','A','I','N','2','0','2','5','🕊','⚡','🌟','🔮'];
+      let drops=[], fontSize=14, columns=0, paused=false, perfLow=false, q=1, frameSkip=0, gradient=null;
+
+      function resize(){
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        fontSize = Math.max(12, Math.round(canvas.width/110) * q);
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(0);
+        ctx.font = fontSize + 'px monospace';
+        gradient = ctx.createLinearGradient(0,0,0,canvas.height);
+        gradient.addColorStop(0,'#00ffbb'); gradient.addColorStop(.5,'#00ffee'); gradient.addColorStop(1,'#ffd700');
+      }
+      function draw(){
+        if(paused){ requestAnimationFrame(draw); return; }
+        if(perfLow && (frameSkip = 1 - frameSkip)) { requestAnimationFrame(draw); return; }
+        ctx.fillStyle = 'rgba(5,6,10,'+(perfLow?0.04:0.06)+')';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = gradient;
+        for(let i=0;i<drops.length;i++){
+          const ch = glyphs[(Math.random()*glyphs.length)|0];
+          const x = i*fontSize, y = drops[i]*fontSize;
+          ctx.globalAlpha = .85;
+          ctx.fillText(ch, x, y);
+          if(!perfLow && Math.random()>.74){
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = '#ffd700';
+            ctx.fillText(ch, x, y - fontSize);
+            ctx.fillStyle = gradient;
+          }
+          if(y>canvas.height && Math.random()>.975){ drops[i]=0; }
+          drops[i]++;
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+      function setPaused(v){ paused=v; }
+      function setPerf(low){ if(perfLow===low) return; perfLow=low; q = low?1.25:1; resize(); }
+      window.addEventListener('resize', resize,{passive:true});
+      resize(); requestAnimationFrame(draw);
+      document.addEventListener('fx:toggle', (e)=> setPaused(e.detail.paused));
+      document.addEventListener('perf:state', (e)=> setPerf(!!e.detail.low));
+    })();
+  </script>
+
+  <!-- Ripple (no blur) -->
+  <style>
+    :root{--silver:#c0c0c0;--silver-strong:rgba(255,255,255,.9)}
+    .ripple-wave{position:fixed;pointer-events:none;border-radius:9999px;border:1px solid var(--silver-strong);box-shadow:0 0 24px rgba(255,255,255,.35), inset 0 0 24px rgba(255,255,255,.15);transform:translate(-50%,-50%) scale(.01);opacity:.7;will-change:transform,opacity;animation:ripple-wave 900ms ease-out forwards;background:radial-gradient(closest-side, rgba(255,255,255,.35), rgba(255,255,255,.15) 40%, rgba(192,192,192,.08) 70%, transparent 75%)}
+    @keyframes ripple-wave{0%{transform:translate(-50%,-50%) scale(.01);opacity:.7}60%{opacity:.45}100%{transform:translate(-50%,-50%) scale(24);opacity:0}}
+    @media (prefers-reduced-motion:reduce){.ripple-wave{animation-duration:0ms;opacity:0}}
+  </style>
+  <script>
+    (function(){
+      const MIN=90; let last=0; const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+      function ripple(x,y){
+        const now=performance.now();
+        if(now-last<MIN){ return; }
+        last=now;
+        const el=document.createElement('span');
+        el.className='ripple-wave';
+        const size=Math.max(innerWidth,innerHeight)*.08;
+        el.style.width=size+'px';
+        el.style.height=size+'px';
+        el.style.left=x+'px';
+        el.style.top=y+'px';
+        document.body.appendChild(el);
+        el.addEventListener('animationend',function(){ el.remove(); });
+      }
+      if(!reduce.matches){
+        addEventListener('pointerdown',function(ev){ if(ev.button!==0 && ev.pointerType!=='touch'){ return; } ripple(ev.clientX,ev.clientY); },{passive:true});
+      }
+    })();
+  </script>
+
+  <!-- Feuerwerk (Klick & Bewegung) · sanfte Trails · adaptiv · Dauerstrahl bei Gedrückthalten -->
+  <script>
+    (function(){
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+      if(reduce.matches){ return; }
+      const root=document.documentElement;
+      const canvas=document.createElement('canvas');
+      canvas.id='fwCanvas';
+      canvas.style.position='fixed';
+      canvas.style.inset='0';
+      canvas.style.pointerEvents='none';
+      canvas.style.zIndex='2';
+      document.body.appendChild(canvas);
+      const ctx=canvas.getContext('2d',{alpha:true});
+
+      let W=0,H=0,DPR=1, perfLow=false;
+      function resize(){
+        W=innerWidth; H=innerHeight; DPR = perfLow ? 1 : Math.min(1.5, devicePixelRatio||1);
+        canvas.width=Math.floor(W*DPR); canvas.height=Math.floor(H*DPR);
+        canvas.style.width=W+'px'; canvas.style.height=H+'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+        ctx.clearRect(0,0,W,H);
+      }
+      addEventListener('resize',resize,{passive:true});
+      resize();
+
+      const TAU=Math.PI*2; const particles=[]; const pool=[]; const rings=[];
+      let running=true; let lastT=0; let lastDown=0; let lastMove=0; let fpsEma=60;
+      let isDown=false; let sx=0, sy=0; let lastStream=0; // Dauerstrahl-Status
+
+      function rand(a,b){ return Math.random()*(b-a)+a; }
+      function spawn(x,y){
+        const p=pool.pop()||{};
+        p.x=x; p.y=y;
+        const ang=Math.random()*TAU; const spd=rand(1.1,3.2);
+        p.vx=Math.cos(ang)*spd; p.vy=Math.sin(ang)*spd;
+        p.drag=rand(.96,.985); p.gravity=rand(.05,.11);
+        p.life=rand(42,70); p.age=0; p.size=perfLow?rand(.8,1.6):rand(1,2);
+        const goldHue=rand(45,58); const useGold=Math.random()>.35;
+        p.h=useGold?goldHue:0; p.s=useGold?rand(72,95):rand(0,6); p.l=useGold?rand(55,70):rand(85,98);
+        particles.push(p);
+      }
+      function burst(x,y){
+        const cap = perfLow? 450 : 900; if(particles.length>cap){ return; }
+        const clusters= perfLow? 1 : 1+(Math.random()<.5?1:0);
+        for(let c=0;c<clusters;c++){
+          const cx=x+rand(-8,8); const cy=y+rand(-8,8); const count=Math.floor(rand(perfLow?24:44, perfLow?48:82));
+          for(let i=0;i<count;i++){ spawn(cx,cy); }
+        }
+        rings.push({x:x,y:y,r:0,max:Math.max(W,H)*(perfLow?.18:.35),alpha:perfLow?.25:.6});
+      }
+      function trail(x,y){
+        const cap = perfLow? 450 : 900; if(particles.length>cap){ return; }
+        const count=Math.floor(rand(perfLow?2:6, perfLow?5:12));
+        for(let i=0;i<count;i++){ spawn(x+rand(-4,4), y+rand(-4,4)); }
+        if(!perfLow && Math.random()<.15){ rings.push({x:x,y:y,r:0,max:Math.max(W,H)*.12,alpha:.3}); }
+      }
+      function stream(x,y){
+        // sparsamer kontinuierlicher Partikelstrom pro Frame
+        const cap = perfLow? 500 : 950; if(particles.length>cap){ return; }
+        const baseMin = perfLow?1:2, baseMax = perfLow?2:4; // leichter als trail()
+        const count = Math.floor(rand(baseMin, baseMax));
+        for(let i=0;i<count;i++){ spawn(x+rand(-2.5,2.5), y+rand(-2.5,2.5)); }
+      }
+
+      function setPerf(low){
+        if(perfLow===low){ return; }
+        perfLow = low;
+        document.documentElement.classList.toggle('perf-low', perfLow);
+        document.dispatchEvent(new CustomEvent('perf:state',{detail:{low:perfLow}}));
+        resize();
+      }
+
+      function frame(t){
+        const shouldRun=!document.hidden && !root.classList.contains('fx-paused') && !reduce.matches;
+        running=shouldRun;
+        const ms=(t-lastT)||16.7; lastT=t; const fps=1000/ms; fpsEma = fpsEma*0.9 + fps*0.1;
+        if(fpsEma<50){ setPerf(true); } else if(fpsEma>55){ setPerf(false); }
+
+        ctx.globalCompositeOperation='destination-out';
+        ctx.fillStyle='rgba(0,0,0,'+(perfLow?0.22:0.18)+')';
+        ctx.fillRect(0,0,W,H);
+        if(running){
+          // kontinuierlicher Strom, wenn gedrückt
+          if(isDown){
+            // throttle minimal, damit langsame Geräte nicht fluten
+            if(t - lastStream > (perfLow? 22: 16)) { stream(sx, sy); lastStream = t; }
+          }
+
+          ctx.globalCompositeOperation='lighter';
+          for(let i=particles.length-1;i>=0;i--){
+            const p=particles[i];
+            p.vx*=p.drag; p.vy=p.vy*p.drag+p.gravity*(perfLow?0.9:1); p.x+=p.vx; p.y+=p.vy; p.age+=1;
+            const k=1-(p.age/p.life);
+            if(k<=0||p.y>H+40){ particles.splice(i,1); pool.push(p); continue; }
+            const a=Math.max(0, Math.min(1, k*(0.75+Math.random()*0.25)));
+            if(perfLow){ ctx.globalAlpha=a; ctx.fillStyle='hsla('+p.h+','+p.s+'%,'+p.l+'%,'+a+')'; ctx.fillRect(p.x,p.y,1.2,1.2); }
+            else{ ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,TAU); ctx.fillStyle='hsla('+p.h+','+p.s+'%,'+p.l+'%,'+a+')'; ctx.fill(); if(Math.random()<.02){ ctx.fillRect(p.x-.5,p.y-.5,1,1); } }
+          }
+          for(let i=rings.length-1;i>=0;i--){
+            const r=rings[i]; r.r+= (perfLow?6:8); r.alpha*=.96;
+            if(r.alpha<.02||r.r>r.max){ rings.splice(i,1); continue; }
+            ctx.beginPath(); ctx.arc(r.x,r.y,r.r,0,TAU);
+            ctx.strokeStyle='rgba(255,255,255,'+r.alpha+')';
+            ctx.lineWidth=Math.max(.5, (perfLow?1.6:2.2)*(r.alpha));
+            ctx.stroke();
+          }
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+
+      function setDown(v){ isDown=v; if(!v){ lastStream=0; } }
+
+      addEventListener('pointerdown',function(ev){
+        if(ev.button!==0 && ev.pointerType!=='touch'){ return; }
+        if(root.classList.contains('fx-paused')){ return; }
+        const now=performance.now(); if(now-lastDown<70){ return; } lastDown=now;
+        sx=ev.clientX; sy=ev.clientY; setDown(true); burst(sx,sy);
+      },{passive:true});
+
+      addEventListener('pointerup',function(){ setDown(false); },{passive:true});
+      addEventListener('pointercancel',function(){ setDown(false); },{passive:true});
+      addEventListener('blur',function(){ setDown(false); },{passive:true});
+
+      addEventListener('pointermove',function(ev){
+        if(root.classList.contains('fx-paused')){ return; }
+        sx=ev.clientX; sy=ev.clientY;
+        const throttle = perfLow? 80:50;
+        const now=performance.now(); if(now-lastMove<throttle){ return; } lastMove=now;
+        trail(ev.clientX,ev.clientY);
+      },{passive:true});
+
+      addEventListener('touchmove',function(ev){
+        if(root.classList.contains('fx-paused')){ return; }
+        const t=ev.touches&&ev.touches[0]; if(!t){ return; }
+        sx=t.clientX; sy=t.clientY;
+        const throttle = perfLow? 80:50; const now=performance.now(); if(now-lastMove<throttle){ return; } lastMove=now;
+        trail(t.clientX,t.clientY);
+      },{passive:true});
+
+      addEventListener('touchend',function(){ setDown(false); },{passive:true});
+      addEventListener('touchcancel',function(){ setDown(false); },{passive:true});
+    })();
+  </script>
+
+  <!-- Smooth Reveal, Parallax, Scroll-Progress, Smooth-Anchor -->
+  <script>
+    (function(){
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+      // Reveal: beobachte Karten & Hero
+      const els = document.querySelectorAll('.card');
+      if(!reduce.matches){
+        const io = new IntersectionObserver(function(entries){
+          for(let i=0;i<entries.length;i++){
+            const e=entries[i];
+            if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }
+          }
+        },{rootMargin:'-10% 0px -10% 0px', threshold:.15});
+        els.forEach(function(el){ io.observe(el); });
+      } else {
+        els.forEach(function(el){ el.classList.add('reveal'); });
+      }
+
+      // Parallax via CSS-Variablen (sanft)
+      let raf=0, tx=0, ty=0, cx=.5, cy=.5;
+      function onMove(ev){
+        const hasClient = (typeof ev.clientX === 'number');
+        const x = hasClient ? ev.clientX : (ev.touches ? ev.touches[0].clientX : innerWidth/2);
+        const y = hasClient ? ev.clientY : (ev.touches ? ev.touches[0].clientY : innerHeight/2);
+        cx = x/innerWidth; cy = y/innerHeight;
+        if(!raf){ raf = requestAnimationFrame(apply); }
+      }
+      function apply(){
+        raf=0; tx += (cx - tx)*.08; ty += (cy - ty)*.08;
+        document.documentElement.style.setProperty('--mx', tx.toFixed(4));
+        document.documentElement.style.setProperty('--my', ty.toFixed(4));
+        const sigil = document.getElementById('sigil');
+        if(sigil && !reduce.matches){
+          const dx=(tx-.5)*8; const dy=(ty-.5)*6;
+          sigil.style.transform = 'translate3d('+dx+'px,'+dy+'px,0)';
+        }
+      }
+      addEventListener('pointermove', onMove,{passive:true});
+      addEventListener('touchmove', onMove,{passive:true});
+
+      // Scroll-Progressbar
+      const bar = document.getElementById('scrollbar');
+      function progress(){ const h = document.documentElement; const sc = h.scrollTop; const max = h.scrollHeight - h.clientHeight; const p = max>0 ? (sc/max)*100 : 0; bar.style.width = p + '%'; }
+      addEventListener('scroll', progress, {passive:true}); progress();
+
+      // Sanftes Ankern (fallback)
+      var anchors = document.querySelectorAll('a[href^="#"]');
+      for(var i=0;i<anchors.length;i++){
+        anchors[i].addEventListener('click', function(ev){
+          const id = this.getAttribute('href').slice(1);
+          if(!id){ return; }
+          const el = document.getElementById(id);
+          if(!el){ return; }
+          if('scrollBehavior' in document.documentElement.style){ return; }
+          ev.preventDefault();
+          const top = el.getBoundingClientRect().top + window.pageYOffset - 70;
+          window.scrollTo({top: top, behavior:'smooth'});
+        });
+      }
+    })();
+  </script>
+
+  <!-- FX Toggle & Energiesparen (clean) -->
+  <script>
+    (function(){
+      const root=document.documentElement; const btn=document.getElementById('fxToggle'); const status=document.getElementById('fxToggleStatus');
+      function setPaused(paused){
+        root.classList.toggle('fx-paused',paused);
+        if(btn){ btn.setAttribute('aria-pressed', paused? 'true':'false'); }
+        if(status){ status.textContent = paused? 'Effekte pausiert':'Effekte aktiv'; }
+        document.dispatchEvent(new CustomEvent('fx:toggle',{detail:{paused:paused}}));
+      }
+      if(btn){ btn.addEventListener('click',function(){ setPaused(!root.classList.contains('fx-paused')); }); }
+      document.addEventListener('visibilitychange',function(){ if(document.hidden){ setPaused(true); } });
+      setPaused(false);
+    })();
+  </script>
+
+  <!-- Low-Power & Statusansagen -->
+  <script>
+    (function(){
+      const fxNode = document.getElementById('fx-status');
+      function announce(msg){ if(fxNode){ fxNode.textContent = msg; } }
+      try{
+        const m = matchMedia('(prefers-reduced-motion: reduce)');
+        function onMotionChange(ev){ announce(ev.matches ? 'Effekte reduziert' : 'Effekte aktiv'); }
+        if(m){ onMotionChange(m); m.addEventListener('change', onMotionChange); }
+      }catch(e){}
+      let idleTimer=null; const idleMs=30000;
+      function reset(){
+        const docEl=document.documentElement;
+        if(docEl.classList.contains('low-power')){ docEl.classList.remove('low-power'); announce('Effekte aktiv'); }
+        if(idleTimer){ clearTimeout(idleTimer); }
+        idleTimer=setTimeout(function(){ docEl.classList.add('low-power'); announce('Effekte pausiert'); }, idleMs);
+      }
+      ['mousemove','keydown','touchstart','scroll','focus'].forEach(function(evt){ addEventListener(evt, reset, {passive:true}); });
+      reset();
+    })();
+  </script>
+
+  <!-- Self‑tests (act as test cases) -->
+  <script>
+    (function(){
+      const ul = document.getElementById('selftest-list');
+      function add(ok,msg){ const li=document.createElement('li'); li.textContent=(ok?'✅ ':'❌ ')+msg; ul.appendChild(li); }
+      try{ add(true,'Self‑tests geladen'); }catch(e){ /* noop */ }
+      try{ const m=document.getElementById('matrix'); const ctx=m.getContext('2d'); add(!!ctx,'Matrix‑Canvas Kontext erstellt'); }catch(e){ add(false,'Matrix‑Canvas fehlgeschlagen: '+e.message); }
+      try{ const fw=document.getElementById('fwCanvas'); add(!!fw,'Feuerwerk‑Canvas vorhanden (lazy)'); }catch(e){ add(false,'Feuerwerk‑Canvas fehlt: '+e.message); }
+      try{ const hasBlur = Array.from(document.styleSheets).some(function(ss){ try{ return Array.from(ss.cssRules||[]).some(function(r){ return /blur\(/i.test(r.cssText)||/backdrop-filter/i.test(r.cssText); }); }catch(e){ return false; } }); add(!hasBlur,'Kein CSS‑Blur/Backdrop‑Filter gefunden'); }catch(e){ add(false,'CSS‑Prüfung fehlgeschlagen: '+e.message); }
+      try{ const t=document.createElement('canvas').getContext('2d'); t.fillText('✓',1,1); add(true,'Canvas fillText funktionsfähig'); }catch(e){ add(false,'fillText Fehler: '+e.message); }
+
+      // Hilfsfunktion: Alpha-Summe in kleinem Fenster
+      function alphaSum(ctx, x, y, r){ const s=2*r+1; const img=ctx.getImageData(Math.max(0,x-r), Math.max(0,y-r), s, s).data; let sum=0; for(let i=3;i<img.length;i+=4) sum+=img[i]; return sum; }
+
+      // Vorhandener Klick-Test (schnelle Reaktion)
+      try{
+        const fw=document.getElementById('fwCanvas');
+        if(fw && fw.getContext){
+          const x=50, y=80;
+          if('PointerEvent' in window){
+            const ev=new PointerEvent('pointerdown',{clientX:x, clientY:y, button:0});
+            window.dispatchEvent(ev);
+          }
+          setTimeout(function(){
+            try{
+              const ctx=fw.getContext('2d');
+              const data=ctx.getImageData(x,y,1,1).data;
+              const changed = (data[3]!==0);
+              add(changed,'Feuerwerk reagiert auf Klick (Pixel verändert)');
+            }catch(e){ add(false,'Feuerwerk Pixelprobe fehlgeschlagen: '+e.message); }
+          },120);
+        }
+      }catch(e){ add(false,'Feuerwerk‑Test: '+e.message); }
+
+      // Neuer Test: Dauerstrahl hält Helligkeit besser als einmaliger Burst
+      try{
+        const fw=document.getElementById('fwCanvas');
+        if(fw && fw.getContext){
+          const x=80, y=120; const ctx=fw.getContext('2d');
+          // Baseline: kurzer Klick (Burst) -> messen nach 350ms
+          if('PointerEvent' in window){
+            window.dispatchEvent(new PointerEvent('pointerdown',{clientX:x, clientY:y, button:0}));
+            window.dispatchEvent(new PointerEvent('pointerup',{clientX:x, clientY:y, button:0}));
+          }
+          setTimeout(function(){
+            const base = alphaSum(ctx,x,y,2);
+            // Stream: gedrückt halten (kein pointerup) -> messen nach 250ms
+            if('PointerEvent' in window){
+              window.dispatchEvent(new PointerEvent('pointerdown',{clientX:x, clientY:y, button:0}));
+            }
+            setTimeout(function(){
+              const stream = alphaSum(ctx,x,y,2);
+              add(stream > base, 'Dauerstrahl (gedrückt) hält Helligkeit/Alpha länger als Einmal‑Burst');
+              // Aufräumen
+              if('PointerEvent' in window){
+                window.dispatchEvent(new PointerEvent('pointerup',{clientX:x, clientY:y, button:0}));
+              }
+            },250);
+          },350);
+        }
+      }catch(e){ add(false,'Dauerstrahl‑Test: '+e.message); }
+    })();
+  </script>
+  <script>
+    (function(){
+      const conflictForm=document.getElementById('conflictForm');
+      const statusEl=document.getElementById('conflictStatus');
+      if(!conflictForm||!statusEl)return;
+
+      conflictForm.addEventListener('submit',async(event)=>{
+        event.preventDefault();
+        statusEl.style.display='block';
+        statusEl.className='report-status';
+        const consentBox=document.getElementById('conflict-consent');
+        if(!consentBox?.checked){
+          statusEl.classList.add('err');
+          statusEl.textContent='Bitte stimme dem DSGVO-Hinweis zu, bevor du sendest.';
+          focusStatus();
+          return;
+        }
+
+        statusEl.textContent='Übermittle Meldung …';
+        const endpoint=conflictForm.dataset.endpoint||conflictForm.action;
+        const formData=new FormData(conflictForm);
+        formData.set('_replyto',formData.get('email')||'statesflowwishes@outlook.it');
+        formData.set('timestamp',new Date().toISOString());
+        formData.set('reference','EX2025D1218310');
+
+        const payload=Object.fromEntries(formData.entries());
+
+        try{
+          const response=await fetch(endpoint,{
+            method:'POST',
+            headers:{'Content-Type':'application/json','Accept':'application/json'},
+            body:JSON.stringify(payload)
+          });
+          if(!response.ok){throw new Error(`HTTP ${response.status}`);}
+          await response.json().catch(()=>null);
+          statusEl.classList.add('ok');
+          statusEl.textContent='Danke! Deine Meldung wurde vertraulich übermittelt.';
+          conflictForm.reset();
+        }catch(error){
+          console.error('Konfliktmeldung fehlgeschlagen:',error);
+          statusEl.classList.add('err');
+          statusEl.textContent='Senden fehlgeschlagen. Bitte später erneut versuchen oder direkt an statesflowwishes@outlook.it schreiben.';
+        }finally{
+          focusStatus();
+        }
+      });
+
+      function focusStatus(){
+        statusEl.setAttribute('tabindex','-1');
+        statusEl.focus({preventScroll:false});
+        setTimeout(()=>statusEl.removeAttribute('tabindex'),2500);
+      }
+    })();
+  </script>
+
+  <!-- Partner Portal Script -->
+  <script>
+    (function(){
+      const toggleBtn = document.getElementById('partner-toggle');
+      const menu = document.getElementById('partner-menu');
+      const closeBtn = document.getElementById('partner-close');
+      
+      if(!toggleBtn || !menu || !closeBtn) return;
+      
+      function openMenu(){
+        menu.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      
+      function closeMenu(){
+        menu.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      
+      toggleBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(menu.classList.contains('hidden')){
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+      
+      closeBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        closeMenu();
+      });
+      
+      document.addEventListener('click', function(e){
+        if(!menu.contains(e.target) && !toggleBtn.contains(e.target)){
+          closeMenu();
+        }
+      });
+      
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && !menu.classList.contains('hidden')){
+          closeMenu();
+          toggleBtn.focus();
+        }
+      });
+    })();
+  </script>
+
+  <!-- KI Innovation Portal Script -->
+  <script>
+    (function(){
+      const toggleBtn = document.getElementById('ki-toggle');
+      const menu = document.getElementById('ki-menu');
+      const closeBtn = document.getElementById('ki-close');
+      
+      if(!toggleBtn || !menu || !closeBtn) return;
+      
+      function openMenu(){
+        menu.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      
+      function closeMenu(){
+        menu.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      
+      toggleBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        if(menu.classList.contains('hidden')){
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+      
+      closeBtn.addEventListener('click', function(e){
+        e.stopPropagation();
+        closeMenu();
+      });
+      
+      document.addEventListener('click', function(e){
+        if(!menu.contains(e.target) && !toggleBtn.contains(e.target)){
+          closeMenu();
+        }
+      });
+      
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && !menu.classList.contains('hidden')){
+          closeMenu();
+          toggleBtn.focus();
+        }
+      });
+    })();
+  </script>
+
+  <!-- Content Overlay System Script -->
+  <script>
+    (function(){
+      const overlay = document.getElementById('content-overlay');
+      const container = document.getElementById('content-container');
+      const titleEl = document.getElementById('content-title');
+      const closeBtn = document.getElementById('content-close');
+      const frame = document.getElementById('content-frame');
+      
+      if(!overlay || !container || !titleEl || !closeBtn || !frame) return;
+      
+      function openOverlay(url, title, portalType){
+        titleEl.textContent = title;
+        frame.src = url;
+        
+        // Set styling based on portal type
+        container.className = 'pdf-container ' + (portalType === 'partner' ? 'partner-style' : 'ki-style');
+        
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeOverlay(){
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          frame.src = '';
+        }, 400);
+      }
+      
+      closeBtn.addEventListener('click', closeOverlay);
+      
+      overlay.addEventListener('click', function(e){
+        if(e.target === overlay){
+          closeOverlay();
+        }
+      });
+      
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && overlay.classList.contains('active')){
+          closeOverlay();
+        }
+      });
+      
+      // Partner Portal Links
+      document.querySelectorAll('.partner-link').forEach(link => {
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          const url = this.getAttribute('href');
+          const title = this.getAttribute('data-title') || 'Partner Content';
+          openOverlay(url, title, 'partner');
+          document.getElementById('partner-menu').classList.add('hidden');
+        });
+      });
+      
+      // KI Portal Links
+      document.querySelectorAll('.ki-link').forEach(link => {
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          const url = this.getAttribute('href');
+          const title = this.getAttribute('data-title') || 'EU Commission Content';
+          openOverlay(url, title, 'ki');
+          document.getElementById('ki-menu').classList.add('hidden');
+        });
+      });
+    })();
+  </script>
+</body></html>

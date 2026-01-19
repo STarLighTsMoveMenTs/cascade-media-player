@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neujahrsgrüße 2026 - Orange Edition</title>
+    <style>
+        :root {
+            --orange-main: #ff8c00;
+            --orange-bright: #ffae42;
+            --orange-glow: rgba(255, 140, 0, 0.4);
+            --dark-bg: #0d0d0d;
+            --border-style: 2px solid var(--orange-main);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Hintergrund-Canvas für fließende Sterne */
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #2b1b00 0%, #000000 100%);
+        }
+
+        .container {
+            max-width: 700px;
+            padding: 40px;
+            margin: 20px;
+            background: rgba(15, 10, 0, 0.9);
+            border: var(--border-style);
+            border-radius: 15px;
+            box-shadow: 0 0 30px var(--orange-glow);
+            position: relative;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-stars {
+            font-size: 2rem;
+            color: var(--orange-bright);
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+
+        h1 {
+            color: var(--orange-main);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--orange-main);
+            padding-bottom: 15px;
+        }
+
+        .greeting-sub {
+            font-style: italic;
+            color: var(--orange-bright);
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #f0f0f0;
+        }
+
+        .highlight-box {
+            border-left: 3px solid var(--orange-main);
+            padding-left: 20px;
+            margin: 30px 0;
+            background: rgba(255, 140, 0, 0.05);
+            font-style: italic;
+            text-align: left;
+            color: var(--orange-bright);
+        }
+
+        .leader-section {
+            background: linear-gradient(45deg, rgba(255,140,0,0.15), transparent);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 140, 0, 0.2);
+        }
+
+        .footer {
+            margin-top: 40px;
+            border-top: 1px solid var(--orange-main);
+            padding-top: 20px;
+            color: var(--orange-main);
+            font-weight: bold;
+        }
+
+        .signature {
+            font-size: 1.4rem;
+            margin-top: 10px;
+            color: var(--orange-bright);
+        }
+
+        /* Dekorative Ecken */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--orange-main);
+        }
+        .top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+        /* Responsive Anpassung */
+        @media (max-width: 600px) {
+            .container { padding: 20px; margin: 10px; }
+            h1 { font-size: 1.6rem; }
+            p { font-size: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starCanvas"></canvas>
+
+    <div class="container">
+        <!-- Dekorative Ecken -->
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <div class="header-stars">★ ★ ★ ★ ★</div>
+        
+        <h1>Grüße zum Jahr 2026</h1>
+        <div class="greeting-sub">Ein wunderschönen guten Morgen an alle Partner & Freunde</div>
+
+        <p>
+            Ich wünsche euch einen fabelhaften Tag und für das Jahr 2026 vor allem viel Gesundheit – sowohl im privaten Bereich als auch in unseren gemeinsamen partnerschaftlichen und internationalen Beziehungen.
+        </p>
+
+        <p>
+            Es ist mir wichtig, euch kurz mitzuteilen, dass ich keineswegs undankbar bin. Ganz im Gegenteil: Ich sage hiermit ein <strong>herzliches Dankeschön</strong> an alle unsere Partner und Partnerinnen.
+        </p>
+
+        <div class="highlight-box">
+            Auch wenn ich in letzter Zeit etwas ruhiger war, bin ich weiterhin aktiv und schätze das Vertrauen, das ihr mir entgegenbringt, zutiefst. Vielen Dank für eure Treue!
+        </div>
+
+        <div class="leader-section">
+            <p style="text-align: center; margin-bottom: 0; color: #ffffff;">
+                <strong>An unsere Führungskräfte & Leader:</strong><br>
+                In Anbetracht der aktuellen Weltgeschehnisse ist es sicherlich keine einfache Zeit. Doch ich bin voller Zuversicht, dass wir diese Herausforderungen gemeinsam meistern werden – und dass ihr voran geht, um Großartiges zu bewirken.
+            </p>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px;">
+            Ich werde bald wieder von mir hören lassen.
+        </p>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="Peace Diplomacy & Technology · EX2025D1218310 — Daniel Pohl (Smooth Glide · Fix v2).html" style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, var(--orange-main), var(--orange-bright)); border-radius: 999px; text-decoration: none; color: #0d0d0d; font-weight: bold; letter-spacing: 0.05em; box-shadow: 0 10px 30px var(--orange-glow); transition: transform 0.3s ease, box-shadow 0.3s ease;">→ Zum Zertifikat & Profil</a>
+        </p>
+
+        <div class="footer">
+            DANKESCHÖN FÜR DIE GUTE ZUSAMMENARBEIT!
+            <div class="signature">★ ★ ★</div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars = [];
+            for (let i = 0; i < 200; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5,
+                    speed: Math.random() * 0.15 + 0.05,
+                    alpha: Math.random(),
+                    direction: Math.random() > 0.5 ? 1 : -1
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            stars.forEach(s => {
+                ctx.fillStyle = `rgba(255, 200, 100, ${s.alpha})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                s.y -= s.speed;
+                if (s.y < 0) s.y = canvas.height;
+
+                s.alpha += 0.005 * s.direction;
+                if (s.alpha <= 0.1 || s.alpha >= 0.9) s.direction *= -1;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body>
+</html>

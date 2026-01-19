@@ -103,3 +103,295 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes pulse-slow {
+    0%, 100% {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.8), 0 0 80px rgba(0, 255, 255, 0.4);
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      top: 0;
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: scan 3s linear infinite;
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s infinite;
+  }
+
+  @keyframes energyFlow {
+    0% { 
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.2);
+    }
+    100% { 
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+  }
+
+  @keyframes energyPulse {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-energy-flow {
+    animation: energyFlow 3s ease-in-out infinite;
+  }
+
+  .animate-energy-pulse {
+    animation: energyPulse 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-2px) translateX(1px);
+    }
+    50% {
+      transform: translateY(0px) translateX(2px);
+    }
+    75% {
+      transform: translateY(2px) translateX(1px);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-float-delay-1 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 0.3s;
+  }
+
+  .animate-float-delay-2 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 0.6s;
+  }
+
+  .animate-float-delay-3 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 0.9s;
+  }
+
+  .animate-float-delay-4 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 1.2s;
+  }
+
+  .animate-float-delay-5 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  .animate-float-delay-6 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 1.8s;
+  }
+
+  .animate-float-delay-7 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 2.1s;
+  }
+
+  .animate-float-delay-8 {
+    animation: float 4s ease-in-out infinite;
+    animation-delay: 2.4s;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes glitch-2 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(-3px, 3px);
+    }
+    40% {
+      transform: translate(3px, -3px);
+    }
+    60% {
+      transform: translate(-2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  @keyframes glitch-3 {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(3px, -3px);
+    }
+    50% {
+      transform: translate(-3px, 3px);
+    }
+    75% {
+      transform: translate(2px, 2px);
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+
+  .animate-glitch-2 {
+    animation: glitch-2 0.3s infinite;
+  }
+
+  .animate-glitch-3 {
+    animation: glitch-3 0.3s infinite 0.15s;
+  }
+
+  .animate-progress {
+    animation: progress 2s ease-out forwards;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-top {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-top {
+    animation: slide-in-top 0.5s ease-out forwards;
+  }
+
+  /* Responsive Improvements für bessere Lesbarkeit */
+  @media (max-width: 1200px) {
+    /* Vergrößere Text und Buttons auf kleineren Displays */
+    .text-xs { font-size: 0.875rem; }
+    .text-sm { font-size: 1rem; }
+    .text-base { font-size: 1.125rem; }
+    .text-lg { font-size: 1.25rem; }
+  }
+
+  /* Verbesserte Button-Sichtbarkeit */
+  button:focus-visible {
+    outline: 2px solid rgba(0, 255, 255, 0.8);
+    outline-offset: 2px;
+  }
+
+  /* Verbesserte Textlesbarkeit */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

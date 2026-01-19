@@ -1,17 +1,35 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 const BackSide = () => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Setup seamless video looping
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => {
+      video.currentTime = 0;
+      video.play().catch(err => console.log('Video play error:', err));
+    };
+
+    video.addEventListener('ended', handleEnded);
+    return () => video.removeEventListener('ended', handleEnded);
+  }, []);
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-full object-cover opacity-60"
         >
           <source src="/videos/center-video.mp4" type="video/mp4" />
