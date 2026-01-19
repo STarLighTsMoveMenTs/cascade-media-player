@@ -1,3 +1,0 @@
-likewise.governmententerprise.org {
-    reverse_proxy host.containers.internal:8080
-}
