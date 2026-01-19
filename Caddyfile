@@ -1,5 +1,5 @@
 :80 {
-	root * /app/dist
+	root * dist
 	encode gzip
 	file_server
 	try_files {path} /index.html
