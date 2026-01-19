@@ -1,0 +1,14 @@
+:80 {
+	root * /dist
+	encode gzip
+	file_server
+	try_files {path} /index.html
+}
+
+# Handle all hostnames (including Traefik subdomain)
+http:// {
+	root * /dist
+	encode gzip
+	file_server
+	try_files {path} /index.html
+}
