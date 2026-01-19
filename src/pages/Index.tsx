@@ -74,37 +74,37 @@ const Index = () => {
 
       {/* Transparent Code Panel */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-black/40 backdrop-blur-sm border border-cyan-500/50 rounded-lg p-6 shadow-[0_0_30px_rgba(0,255,255,0.3)]">
+        <div className="bg-transparent border border-cyan-500/30 rounded-lg p-4 shadow-[0_0_20px_rgba(0,255,255,0.15)]">
           {/* Code Display */}
-          <div className="mb-6">
-            <div className="bg-black/60 border border-cyan-400/60 rounded px-6 py-3 text-center">
-              <span className="text-cyan-400 text-sm tracking-wider font-mono">Enter Code</span>
+          <div className="mb-4">
+            <div className="bg-black/20 border border-cyan-400/40 rounded px-4 py-2 text-center">
+              <span className="text-cyan-400 text-xs tracking-wider font-mono">Enter Code</span>
             </div>
-            <div className="mt-4 bg-black/60 border border-cyan-400/60 rounded px-6 py-4 text-center min-w-[200px]">
-              <span className="text-cyan-300 text-2xl font-mono tracking-[0.3em]">
+            <div className="mt-2 bg-black/20 border border-cyan-400/40 rounded px-4 py-2 text-center min-w-[160px]">
+              <span className="text-cyan-300 text-lg font-mono tracking-[0.2em]">
                 {inputCode || "________"}
               </span>
             </div>
           </div>
 
           {/* Layer Toggle */}
-          <div className="flex justify-center gap-4 mb-4">
+          <div className="flex justify-center gap-2 mb-3">
             <button
               onClick={() => setActiveLayer("numbers")}
-              className={`px-4 py-2 rounded font-mono text-sm transition-all ${
+              className={`px-3 py-1 rounded font-mono text-xs transition-all ${
                 activeLayer === "numbers"
-                  ? "bg-cyan-500/40 text-cyan-200 border border-cyan-400"
-                  : "bg-black/40 text-cyan-400/60 border border-cyan-400/30 hover:border-cyan-400/60"
+                  ? "bg-cyan-500/20 text-cyan-200 border border-cyan-400/60"
+                  : "bg-transparent text-cyan-400/60 border border-cyan-400/20 hover:border-cyan-400/40"
               }`}
             >
               1-9
             </button>
             <button
               onClick={() => setActiveLayer("letters")}
-              className={`px-4 py-2 rounded font-mono text-sm transition-all ${
+              className={`px-3 py-1 rounded font-mono text-xs transition-all ${
                 activeLayer === "letters"
-                  ? "bg-cyan-500/40 text-cyan-200 border border-cyan-400"
-                  : "bg-black/40 text-cyan-400/60 border border-cyan-400/30 hover:border-cyan-400/60"
+                  ? "bg-cyan-500/20 text-cyan-200 border border-cyan-400/60"
+                  : "bg-transparent text-cyan-400/60 border border-cyan-400/20 hover:border-cyan-400/40"
               }`}
             >
               A-Z
@@ -113,55 +113,55 @@ const Index = () => {
 
           {/* Keypad */}
           {activeLayer === "numbers" ? (
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2">
               {numbers.slice(0, 9).map((num) => (
                 <button
                   key={num}
                   onClick={() => handleKeyPress(num)}
-                  className="w-14 h-14 rounded-full border-2 border-cyan-400/60 bg-black/40 text-cyan-300 text-xl font-mono hover:bg-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(0,255,255,0.2)] hover:shadow-[0_0_25px_rgba(0,255,255,0.4)]"
+                  className="w-10 h-10 rounded-full border border-cyan-400/40 bg-transparent text-cyan-300 text-base font-mono hover:bg-cyan-500/20 hover:border-cyan-400/60 transition-all"
                 >
                   {num}
                 </button>
               ))}
               <button
                 onClick={handleClear}
-                className="w-14 h-14 rounded-full border-2 border-red-400/60 bg-black/40 text-red-400 text-sm font-mono hover:bg-red-500/30 hover:border-red-400 transition-all"
+                className="w-10 h-10 rounded-full border border-red-400/40 bg-transparent text-red-400 text-xs font-mono hover:bg-red-500/20 hover:border-red-400/60 transition-all"
               >
                 CLR
               </button>
               <button
                 onClick={() => handleKeyPress("0")}
-                className="w-14 h-14 rounded-full border-2 border-cyan-400/60 bg-black/40 text-cyan-300 text-xl font-mono hover:bg-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_15px_rgba(0,255,255,0.2)] hover:shadow-[0_0_25px_rgba(0,255,255,0.4)]"
+                className="w-10 h-10 rounded-full border border-cyan-400/40 bg-transparent text-cyan-300 text-base font-mono hover:bg-cyan-500/20 hover:border-cyan-400/60 transition-all"
               >
                 0
               </button>
               <button
                 onClick={handleBackspace}
-                className="w-14 h-14 rounded-full border-2 border-yellow-400/60 bg-black/40 text-yellow-400 text-sm font-mono hover:bg-yellow-500/30 hover:border-yellow-400 transition-all"
+                className="w-10 h-10 rounded-full border border-yellow-400/40 bg-transparent text-yellow-400 text-sm font-mono hover:bg-yellow-500/20 hover:border-yellow-400/60 transition-all"
               >
                 ←
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-6 gap-2 max-w-xs">
+            <div className="grid grid-cols-7 gap-1">
               {letters.map((letter) => (
                 <button
                   key={letter}
                   onClick={() => handleKeyPress(letter)}
-                  className="w-10 h-10 rounded border border-cyan-400/60 bg-black/40 text-cyan-300 text-sm font-mono hover:bg-cyan-500/30 hover:border-cyan-400 transition-all shadow-[0_0_10px_rgba(0,255,255,0.2)] hover:shadow-[0_0_20px_rgba(0,255,255,0.4)]"
+                  className="w-7 h-7 rounded border border-cyan-400/40 bg-transparent text-cyan-300 text-xs font-mono hover:bg-cyan-500/20 hover:border-cyan-400/60 transition-all"
                 >
                   {letter}
                 </button>
               ))}
               <button
                 onClick={handleClear}
-                className="w-10 h-10 rounded border border-red-400/60 bg-black/40 text-red-400 text-xs font-mono hover:bg-red-500/30 hover:border-red-400 transition-all"
+                className="w-7 h-7 rounded border border-red-400/40 bg-transparent text-red-400 text-[10px] font-mono hover:bg-red-500/20 hover:border-red-400/60 transition-all"
               >
                 CLR
               </button>
               <button
                 onClick={handleBackspace}
-                className="w-10 h-10 rounded border border-yellow-400/60 bg-black/40 text-yellow-400 text-sm font-mono hover:bg-yellow-500/30 hover:border-yellow-400 transition-all"
+                className="w-7 h-7 rounded border border-yellow-400/40 bg-transparent text-yellow-400 text-xs font-mono hover:bg-yellow-500/20 hover:border-yellow-400/60 transition-all"
               >
                 ←
               </button>
@@ -171,13 +171,13 @@ const Index = () => {
           {/* Submit Button */}
           <button
             onClick={handleSubmit}
-            className="mt-6 w-full py-3 rounded bg-gradient-to-r from-cyan-600/60 to-blue-600/60 border border-cyan-400/60 text-cyan-200 font-mono tracking-wider hover:from-cyan-500/60 hover:to-blue-500/60 transition-all shadow-[0_0_20px_rgba(0,255,255,0.3)]"
+            className="mt-4 w-full py-2 rounded bg-cyan-500/10 border border-cyan-400/40 text-cyan-200 text-sm font-mono tracking-wider hover:bg-cyan-500/20 transition-all"
           >
             ENTER
           </button>
 
           {/* Navigation Hint */}
-          <div className="mt-4 text-center text-cyan-400/60 text-xs font-mono">
+          <div className="mt-2 text-center text-cyan-400/40 text-[10px] font-mono">
             Code: 1337LEET
           </div>
         </div>
