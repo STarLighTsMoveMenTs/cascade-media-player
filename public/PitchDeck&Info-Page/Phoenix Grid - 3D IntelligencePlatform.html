@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix Grid - 3D Intelligence Platform</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-200px); }
+        }
+        @keyframes starRain {
+            from { transform: translateY(-200px); }
+            to { transform: translateY(0); }
+        }
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // --- Data Constants ---
+
+        const rdTracks = [
+          {
+            id: 1,
+            title: "AI Agent Architecture & Reasoning Systems",
+            bullets: [
+              "Modular AI agent frameworks",
+              "Multi-modal orchestration across text, audio, video and 3D",
+              "Simulation and scenario analysis engines",
+              "Explainability and governance by design",
+              "Foundations for autonomous and semi-autonomous workflows",
+            ],
+          },
+          {
+            id: 2,
+            title: "High-Performance Compute Infrastructure (HPC)",
+            bullets: [
+              "GPU-accelerated compute pipelines",
+              "Low-latency architectures for interactive 3D environments",
+              "Distributed computation concepts",
+              "Performance optimization for rendering and inference",
+            ],
+          },
+          {
+            id: 3,
+            title: "Real-Time 3D Modeling & Visualization",
+            bullets: [
+              "WebGPU/WebGL engine development",
+              "Digital twins for infrastructure and systems",
+              "Interactive dashboards for complex data environments",
+              "AI-driven interface generation",
+              "Real-time environmental simulation",
+            ],
+          },
+          {
+            id: 4,
+            title: "Satellite, Mesh & Infrared Network Concepts",
+            bullets: [
+              "Resilient communication models",
+              "Mesh networking and redundancy structures",
+              "Infrared sensing concepts",
+              "High-level geospatial data fusion",
+              "Foundational communication concepts for future infrastructures",
+            ],
+          },
+          {
+            id: 5,
+            title: "Hardware Identity, Integrity & Telemetry Concepts",
+            bullets: [
+              "Device identity fingerprinting approaches",
+              "Optical tagging and board signatures",
+              "Telemetry-driven integrity monitoring",
+              "Trust frameworks for secure computation",
+            ],
+          },
+          {
+            id: 6,
+            title: "Software Preservation & Re-Engineering",
+            bullets: [
+              "AI-assisted modernization of legacy applications",
+              "Automated refactoring techniques",
+              "3D visualization of software architecture",
+              "Long-term digital preservation strategies",
+            ],
+          },
+          {
+            id: 7,
+            title: "Financial Intelligence Interfaces",
+            bullets: [
+              "Secure, AI-supported navigation layers for financial environments",
+              "User-centric interaction models",
+              "Transparency-enhancing design principles",
+              "High-level conceptual exploration of financial UX flows",
+            ],
+          },
+          {
+            id: 8,
+            title: "Cybersecurity & Forensics Tooling",
+            bullets: [
+              "Threat modeling and anomaly detection concepts",
+              "Digital forensics methodologies",
+              "Secure information-handling frameworks",
+              "AI-supported investigative tools",
+            ],
+          },
+          {
+            id: 9,
+            title: "Global Asset & System Discovery Concepts",
+            bullets: [
+              "Unified discovery interface for distributed systems",
+              "Real-time representation of assets and infrastructures",
+              "Indexing and mapping architectures",
+              "Holistic operational visibility concepts",
+            ],
+          },
+          {
+            id: 10,
+            title: "Social Reintegration & Education Frameworks",
+            bullets: [
+              "Platforms for skills development and remote work",
+              "Structured reintegration workflows",
+              "Human-centered digital support environments",
+              "Ethical integration of technology into social contexts",
+            ],
+          },
+          {
+            id: 11,
+            title: "Cultural & Spiritual Visualization Environments",
+            bullets: [
+              "3D cultural heritage and educational experiences",
+              "Interactive virtual pilgrimage environments",
+              "Multi-cultural, inclusive visualization concepts",
+              "Representation of narratives, symbolism and global traditions",
+            ],
+          },
+        ];
+
+        const strategicAreas = [
+          {
+            title: "AI Agent Architecture & Reasoning Systems",
+            goal: "Explainable, governable AI intelligence.",
+            icon: "🧠",
+          },
+          {
+            title: "High-Performance Compute & Simulation",
+            goal: "Scalable infrastructure for mission-critical workloads.",
+            icon: "⚡",
+          },
+          {
+            title: "Immersive 3D Modeling & Visualization",
+            goal: "Intuition and clarity in complex decision environments.",
+            icon: "🌐",
+          },
+          {
+            title: "Resilient Network Concepts",
+            goal: "Redundancy, resilience and situational awareness.",
+            icon: "🛰️",
+          },
+          {
+            title: "Hardware Identity & Integrity Concepts",
+            goal: "Trusted computation environments.",
+            icon: "🔒",
+          },
+          {
+            title: "Legacy Software Preservation & AI Re-Engineering",
+            goal: "Digital continuity and modernization.",
+            icon: "📚",
+          },
+          {
+            title: "Finance Intelligence Interfaces",
+            goal: "Transparency and reliability in financial systems.",
+            icon: "💰",
+          },
+          {
+            title: "Cybersecurity & Digital Forensics",
+            goal: "Robust defensive intelligence.",
+            icon: "🛡️",
+          },
+          {
+            title: "Global Asset & System Discovery Interfaces",
+            goal: "Holistic operational visibility.",
+            icon: "🗺️",
+          },
+          {
+            title: "Social Reintegration & Human-Centric Frameworks",
+            goal: "Human impact and social resilience.",
+            icon: "🤝",
+          },
+          {
+            title: "Cultural & Educational 3D Environments",
+            goal: "Cross-cultural understanding and human connection.",
+            icon: "🕌",
+          },
+        ];
+
+        const deckSlides = [
+          "The Vision",
+          "The Problem",
+          "The Solution",
+          "Experience Layer (3D)",
+          "Intelligence Layer (Google AI)",
+          "Module Overview (16 Projekte)",
+          "Module Deep Dive – AI Agent OS",
+          "Module Deep Dive – Infrastructure",
+          "Module Deep Dive – Security",
+          "Module Deep Dive – Gov & Peace",
+          "Module Deep Dive – Social",
+          "Data & Ethics",
+          "The 3D Interface",
+          "AI + 3D = Next-Gen Communication",
+          "Use Cases",
+          "Business Model",
+          "Market Opportunity",
+          "Why Now",
+          "Closing (Phoenix)",
+        ];
+
+        const modules = [
+          {
+            id: 1,
+            title: "AI Agent Network OS",
+            category: "AI · Orchestration",
+            desc: "Multi-agent operating system for analysis, simulation and control across documents, code, media and 3D.",
+          },
+          {
+            id: 2,
+            title: "Cosmic Investor Vault",
+            category: "Finance · 3D Experience",
+            desc: "Immersive 3D vault and portal for non-confidential investment storytelling, capital introductions and scenario navigation.",
+          },
+          {
+            id: 3,
+            title: "KI-HPC & Government Compute",
+            category: "HPC · Public Sector",
+            desc: "High-performance compute clusters for AI workloads, simulations and critical public-sector or infrastructure-related use cases.",
+          },
+          {
+            id: 4,
+            title: "Satelliten-Infrared-Mesh-Netzwerk",
+            category: "Connectivity · Sensing",
+            desc: "Conceptual satellite, infrared and mesh networking architectures for resilient communication and situational awareness.",
+          },
+          {
+            id: 5,
+            title: "Neural Bank Card Finance",
+            category: "Finance · UX",
+            desc: "AI-assisted navigation layer for financial products, flows and risk views, anchored in secure interaction concepts.",
+          },
+          {
+            id: 6,
+            title: "Precision Marketing",
+            category: "CX · Intelligence",
+            desc: "Privacy-aware recommendation and matching concepts replacing mass advertising with targeted, value-based communication.",
+          },
+          {
+            id: 7,
+            title: "Software Resurrection Engine",
+            category: "Legacy · Modernization",
+            desc: "R&D into restoring, simulating and modernizing legacy software systems using AI workflows and 3D visualization.",
+          },
+          {
+            id: 8,
+            title: "Cybersecurity & Forensics Lab",
+            category: "Security · Forensics",
+            desc: "Threat modeling and anomaly detection and exploratory digital forensics pipelines for defensive intelligence.",
+          },
+          {
+            id: 9,
+            title: "Global Asset Discovery",
+            category: "Operations · Mapping",
+            desc: "Unified conceptual interface to locate, index and represent distributed tools, systems and infrastructure elements.",
+          },
+          {
+            id: 10,
+            title: "Xenometrie Tracking",
+            category: "Sensing · Privacy",
+            desc: "Conceptual GPS, laser and infrared based motion and object-pattern views, combined with privacy-preserving masking.",
+          },
+          {
+            id: 11,
+            title: "Smart Laser-IR Battery System",
+            category: "Energy · Telemetry",
+            desc: "Ideas for monitored, telemetry-driven battery architectures with laser/IR-supported health insights.",
+          },
+          {
+            id: 12,
+            title: "Points-Board-Tag Hardware Trust",
+            category: "Hardware · Trust",
+            desc: "Hardware-identity concepts from board and solder-level tags through to telemetry for verifiable compute environments.",
+          },
+          {
+            id: 13,
+            title: "World Structure Defense System",
+            category: "Resilience · Defense",
+            desc: "Purely defensive architecture concepts focused on protecting critical infrastructures and stability, not weapons.",
+          },
+          {
+            id: 14,
+            title: "Treaty Clock & Orbit Codex",
+            category: "Governance · Peace",
+            desc: "Peace, constitutional and treaty monitoring concepts with high-level stability indicators and explainable metrics.",
+          },
+          {
+            id: 15,
+            title: "Speedworker Reintegration Program",
+            category: "Social · Reintegration",
+            desc: "Human-centred educational and remote-work ecosystems supporting reintegration and skills development.",
+          },
+          {
+            id: 16,
+            title: "Pilgrim Constellation (3D)",
+            category: "Culture · 3D Experience",
+            desc: "Inclusive cultural and spiritual 3D environments to explore global heritage and narratives in a respectful way.",
+          },
+        ];
+
+        // --- Components ---
+
+        const PhoenixModulesGalaxy = ({ onBack }) => {
+          return (
+            <div className="min-h-screen w-full bg-slate-950 text-slate-50 overflow-hidden relative font-sans">
+              {/* starfield background reused */}
+              <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#4c1d95_0,_transparent_55%)] opacity-40" />
+                <div className="absolute inset-0 animate-[stars_40s_linear_infinite] bg-[radial-gradient(2px_2px_at_20px_30px,#e5e7eb_40%,transparent_60%),_radial-gradient(1px_1px_at_120px_80px,#a5b4fc_40%,transparent_60%),_radial-gradient(1.5px_1.5px_at_200px_160px,#f9a8d4_40%,transparent_60%)] opacity-70" />
+              </div>
+
+              <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-10 lg:px-8 lg:py-14">
+                <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                        <button 
+                            onClick={onBack}
+                            className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-indigo-300 hover:text-white transition-colors border border-indigo-500/30 rounded-full px-3 py-1 bg-slate-900/50"
+                        >
+                            ← Back to Overview
+                        </button>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-indigo-200/80">Phoenix Grid · Modules</p>
+                    </div>
+                    <h1 className="mt-2 text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+                      16 Core Modules as an Interactive <span className="bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-sky-300 bg-clip-text text-transparent">Cards Galaxy</span>
+                    </h1>
+                    <p className="mt-3 max-w-2xl text-xs leading-relaxed text-slate-300">
+                      Each card represents one conceptual building block of the Phoenix Grid platform. Hover to explore the focus and intent of every
+                      module in the ecosystem.
+                    </p>
+                  </div>
+                  <div className="text-[10px] text-right text-slate-400 hidden sm:block">
+                    Conceptual · Non-confidential
+                    <br />
+                    16 modules · 1 coherent platform
+                  </div>
+                </header>
+
+                {/* Galaxy layout */}
+                <div className="relative flex-1 rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 shadow-[0_0_70px_rgba(15,23,42,0.95)] overflow-y-auto">
+                  {/* central glow */}
+                  <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,#4f46e5_0,transparent_60%)] opacity-30" />
+
+                  <div className="relative z-10 grid h-full gap-4 md:grid-cols-2 xl:grid-cols-4 pb-12">
+                    {modules.map((m, idx) => (
+                      <div
+                        key={m.id}
+                        className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/90 px-3.5 py-3 text-[11px] shadow-[0_0_26px_rgba(15,23,42,0.9)] transition duration-300 hover:-translate-y-1 hover:border-indigo-400/80 hover:shadow-[0_0_55px_rgba(129,140,248,0.95)]"
+                        style={{
+                          animation: `floatCard 8s ease-in-out infinite`,
+                          animationDelay: `${(idx % 4) * 1.5}s`,
+                        }}
+                      >
+                        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_0_0,#6366f1_0,transparent_45%),radial-gradient(circle_at_100%_100%,#f97316_0,transparent_55%)]" />
+                        <div className="relative z-10 flex items-center justify-between gap-2">
+                          <span className="rounded-full bg-slate-900/80 px-2 py-0.5 text-[10px] font-semibold text-slate-100">
+                            {m.id.toString().padStart(2, "0")}
+                          </span>
+                          <span className="rounded-full border border-slate-700/70 bg-slate-950/80 px-2 py-0.5 text-[9px] uppercase tracking-[0.18em] text-indigo-200/90">
+                            {m.category}
+                          </span>
+                        </div>
+                        <div className="relative z-10 mt-2 text-[12px] font-semibold leading-snug text-slate-50 group-hover:text-indigo-50">
+                          {m.title}
+                        </div>
+                        <p className="relative z-10 mt-2 text-[11px] leading-relaxed text-slate-300/95">
+                          {m.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-400">
+                  <p>
+                    All modules are research concepts at pre-deployment level.
+                  </p>
+                  <span className="text-slate-500">Galaxy View · Hover to explore</span>
+                </div>
+              </div>
+            </div>
+          );
+        };
+
+        const PhoenixGridLanding = ({ onLaunchGalaxy }) => {
+          return (
+            <div className="min-h-screen w-full bg-slate-950 text-slate-50 overflow-x-hidden relative font-sans selection:bg-indigo-500/30 selection:text-indigo-100">
+              {/* Animated starfield background */}
+              <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#5b21ff_0,_transparent_55%)] opacity-40" />
+                {/* stars layer */}
+                <div className="absolute inset-0 animate-[stars_40s_linear_infinite] bg-[radial-gradient(2px_2px_at_20px_30px,#e5e7eb_40%,transparent_60%),_radial-gradient(1px_1px_at_120px_80px,#a5b4fc_40%,transparent_60%),_radial-gradient(1.5px_1.5px_at_200px_160px,#f9a8d4_40%,transparent_60%)] opacity-70" />
+                {/* star rain */}
+                <div className="absolute inset-0 opacity-60 [background-image:repeating-linear-gradient(180deg,rgba(148,163,255,0.4)_0,rgba(148,163,255,0.4)_1px,transparent_1px,transparent_4px)] animate-[starRain_12s_linear_infinite]" />
+              </div>
+
+              {/* Page container */}
+              <header className="sticky top-0 z-50 w-full border-b border-slate-800/60 bg-slate-950/80 backdrop-blur-xl">
+                <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 lg:px-8">
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-9 w-9 rounded-2xl bg-gradient-to-br from-indigo-400 via-fuchsia-400 to-sky-400 shadow-[0_0_40px_rgba(129,140,248,0.8)]">
+                      <div className="absolute inset-[3px] rounded-2xl bg-slate-950 flex items-center justify-center text-xs font-semibold tracking-[0.18em] text-indigo-200">
+                        PG
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+                        Phoenix Grid
+                      </div>
+                      <div className="text-xs text-slate-500">Sovereign 3D Intelligence Platform</div>
+                    </div>
+                  </div>
+                  <nav className="hidden gap-6 text-xs font-medium text-slate-300/90 lg:flex items-center">
+                    <a href="#overview" className="hover:text-indigo-300 transition-colors">
+                      Overview
+                    </a>
+                    <a href="#rd" className="hover:text-indigo-300 transition-colors">
+                      R&D Tracks
+                    </a>
+                    <a href="#executive" className="hover:text-indigo-300 transition-colors">
+                      Briefing
+                    </a>
+                    <button 
+                        onClick={onLaunchGalaxy}
+                        className="group relative overflow-hidden rounded-full border border-indigo-500/50 bg-indigo-950/30 px-4 py-1.5 transition-all hover:bg-indigo-900/50 hover:border-indigo-400"
+                    >
+                        <span className="relative z-10 flex items-center gap-2">
+                            Galaxy View →
+                        </span>
+                    </button>
+                  </nav>
+                </div>
+              </header>
+
+              {/* HERO */}
+              <section className="relative z-10 px-4 pt-14 pb-16 sm:pt-20 sm:pb-24 lg:px-8" id="overview">
+                <div className="mx-auto flex max-w-6xl flex-col gap-12 lg:flex-row lg:items-center">
+                  <div className="flex-1 space-y-6">
+                    <p className="inline-flex items-center gap-2 rounded-full border border-indigo-500/40 bg-slate-950/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-indigo-200 shadow-[0_0_30px_rgba(99,102,241,0.4)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-sky-300 animate-pulse" />
+                      R&D Overview · Non-Confidential
+                    </p>
+                    <h1 className="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl lg:text-[2.6rem]">
+                      Multi-layered <span className="bg-gradient-to-r from-indigo-300 via-fuchsia-300 to-sky-300 bg-clip-text text-transparent">3D Intelligence</span> for
+                      Complex Systems.
+                    </h1>
+                    <p className="max-w-2xl text-sm leading-relaxed text-slate-300">
+                      The platform unifies advanced AI reasoning, high-performance computing, immersive visualization and secure system governance.
+                      It is designed to analyze, visualize and explain complex infrastructures, digital ecosystems, financial flows and cultural knowledge
+                      in real time.
+                    </p>
+                    <div className="flex flex-wrap gap-3 text-[11px] text-slate-300/90">
+                      <span className="rounded-full border border-slate-700/70 bg-slate-950/60 px-3 py-1 hover:border-indigo-500/50 transition-colors cursor-default">Advanced AI Reasoning</span>
+                      <span className="rounded-full border border-slate-700/70 bg-slate-950/60 px-3 py-1 hover:border-indigo-500/50 transition-colors cursor-default">HPC & Simulation</span>
+                      <span className="rounded-full border border-slate-700/70 bg-slate-950/60 px-3 py-1 hover:border-indigo-500/50 transition-colors cursor-default">Real-Time 3D Interfaces</span>
+                      <span className="rounded-full border border-slate-700/70 bg-slate-950/60 px-3 py-1 hover:border-indigo-500/50 transition-colors cursor-default">Governance & Ethics</span>
+                    </div>
+                    
+                    <div className="pt-4 flex flex-col sm:flex-row gap-4">
+                         <button 
+                            onClick={onLaunchGalaxy}
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-slate-950 px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-indigo-50 transition-colors"
+                        >
+                            Launch Galaxy Modules
+                        </button>
+                        <a 
+                            href="#rd"
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-700 bg-transparent text-white px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-slate-900 transition-colors"
+                        >
+                            View R&D Tracks
+                        </a>
+                    </div>
+                  </div>
+
+                  {/* 3D-like card with orbit + stars */}
+                  <div className="flex-1 flex justify-center lg:justify-end">
+                    <div className="relative h-72 w-full max-w-md rounded-3xl border border-indigo-500/40 bg-slate-950/80 p-[1px] shadow-[0_0_80px_rgba(129,140,248,0.65)] backdrop-blur-sm">
+                      <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0,#6366f1_0,transparent_55%),radial-gradient(circle_at_80%_100%,#e879f9_0,transparent_55%)] opacity-70" />
+                        {/* central orbit */}
+                        <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-sky-300/40 animate-[spin_18s_linear_infinite]" />
+                        <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-fuchsia-300/60 animate-[spin_12s_linear_infinite_reverse]" />
+
+                        {/* glowing core */}
+                        <div className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-gradient-to-br from-indigo-300 via-sky-300 to-fuchsia-300 shadow-[0_0_45px_rgba(129,140,248,0.9)] animate-pulse" />
+
+                        {/* floating stars */}
+                        {Array.from({ length: 18 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="absolute h-1 w-1 rounded-full bg-slate-50/90 animate-pulse"
+                            style={{
+                              top: `${10 + (i * 7) % 80}%`,
+                              left: `${5 + (i * 13) % 90}%`,
+                              animationDelay: `${(i % 5) * 0.5}s`,
+                            }}
+                          />
+                        ))}
+
+                        <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-slate-700/70 bg-slate-950/80 px-4 py-3 text-[11px] text-slate-200/90 backdrop-blur">
+                          <div className="mb-1 flex items-center justify-between gap-2">
+                            <span className="font-semibold tracking-wide text-indigo-200">PHOENIX GRID</span>
+                            <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-indigo-200">
+                              3D Intelligence
+                            </span>
+                          </div>
+                          <p className="text-[10px] leading-relaxed text-slate-300">
+                            Sovereign AI-driven 3D experience layer designed for complex infrastructures, finance, governance and human-centric ecosystems.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* R&D TRACKS */}
+              <section id="rd" className="relative z-10 border-t border-slate-800/60 bg-slate-950/70 px-4 py-14 lg:px-8">
+                <div className="mx-auto max-w-6xl">
+                  <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                      <h2 className="text-xl font-semibold tracking-tight text-slate-50">R&D Overview</h2>
+                      <p className="max-w-2xl text-xs leading-relaxed text-slate-300">
+                        The R&D program is structured around eleven tightly connected tracks, each representing a building block of the multi-layered 3D
+                        intelligence platform.
+                      </p>
+                    </div>
+                    <div className="text-[10px] text-right text-slate-400">
+                      Conceptual, pre-deployment level
+                      <br />
+                      Non-confidential summary
+                    </div>
+                  </div>
+
+                  <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {rdTracks.map((track) => (
+                      <article
+                        key={track.id}
+                        className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 p-[1px] shadow-[0_0_40px_rgba(15,23,42,0.85)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_70px_rgba(129,140,248,0.75)]"
+                      >
+                        <div className="relative h-full rounded-[1.05rem] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-4">
+                          <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <div className="h-full w-full bg-[radial-gradient(circle_at_0_0,#6366f1_0,transparent_45%),radial-gradient(circle_at_100%_100%,#ec4899_0,transparent_45%)] opacity-40" />
+                          </div>
+                          <div className="relative z-10">
+                            <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
+                              <span className="rounded-full border border-slate-700/80 bg-slate-950/80 px-2 py-0.5 text-[10px] font-medium text-slate-300">
+                                Track {track.id.toString().padStart(2, "0")}
+                              </span>
+                              <span className="text-[10px] text-indigo-300/90 group-hover:text-indigo-200">R&D Focus</span>
+                            </div>
+                            <h3 className="mb-2 text-[13px] font-semibold leading-snug text-slate-50 group-hover:text-indigo-100">
+                              {track.title}
+                            </h3>
+                            <ul className="space-y-1.5 text-[11px] text-slate-300/95">
+                              {track.bullets.map((b, i) => (
+                                <li key={i} className="flex gap-2 items-start">
+                                  <span className="mt-1.5 h-1 w-1 rounded-full bg-gradient-to-r from-indigo-400 to-fuchsia-300 shrink-0" />
+                                  <span>{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* EXECUTIVE BRIEFING SECTION */}
+              <section id="executive" className="relative z-10 px-4 py-16 lg:px-8">
+                <div className="mx-auto max-w-5xl">
+                  <div className="mx-auto mb-10 max-w-3xl text-center">
+                    <h2 className="text-xl font-semibold tracking-tight text-slate-50">Executive Briefing</h2>
+                    <p className="mt-3 text-xs leading-relaxed text-slate-300">
+                      PHOENIX GRID is a next-generation 3D intelligence platform that integrates advanced AI reasoning, high-performance computing and
+                      immersive visualization to support organizations in understanding, managing and communicating highly complex systems.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {strategicAreas.map((area, idx) => (
+                      <div
+                        key={idx}
+                        className="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/80 p-[1px] shadow-[0_0_32px_rgba(15,23,42,0.9)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_0_65px_rgba(59,130,246,0.8)]"
+                      >
+                        <div className="relative h-full rounded-[1.05rem] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-4">
+                          <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-80 bg-[radial-gradient(circle_at_top,#4f46e5_0,transparent_55%)]" />
+                          <div className="relative z-10 flex h-full flex-col justify-start gap-2">
+                            <div className="mb-1 p-2 w-fit rounded-lg bg-slate-900 border border-slate-800 text-2xl">
+                                {area.icon}
+                            </div>
+                            <div>
+                              <h3 className="text-[13px] font-semibold text-slate-50 group-hover:text-indigo-100">{area.title}</h3>
+                            </div>
+                            <p className="text-[11px] text-slate-300/95 mt-auto pt-2 border-t border-slate-800/50">
+                              <span className="font-semibold text-indigo-300 block mb-0.5">Goal:</span>
+                              {area.goal}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-10 rounded-2xl border border-indigo-500/50 bg-slate-950/80 px-6 py-6 text-[11px] text-slate-200 shadow-[0_0_60px_rgba(79,70,229,0.65)] backdrop-blur-md">
+                    <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-200 border-b border-indigo-500/30 pb-2">Purpose & Direction</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <ul className="space-y-2">
+                        <li className="flex gap-2 items-center"><span className="text-indigo-400">•</span> deliver explainable, interactive 3D AI experiences</li>
+                        <li className="flex gap-2 items-center"><span className="text-indigo-400">•</span> integrate AI reasoning with real-time visualization</li>
+                        <li className="flex gap-2 items-center"><span className="text-indigo-400">•</span> ensure sovereignty, governance and safety</li>
+                        </ul>
+                        <ul className="space-y-2">
+                        <li className="flex gap-2 items-center"><span className="text-indigo-400">•</span> support critical infrastructure, finance and public-sector decisions</li>
+                        <li className="flex gap-2 items-center"><span className="text-indigo-400">•</span> strengthen the human dimension of emerging technologies</li>
+                        </ul>
+                    </div>
+                    <p className="mt-4 text-[10px] text-slate-400 pt-3 border-t border-slate-800">
+                      All research remains at a conceptual, non-confidential level appropriate for early-stage discussions. No proprietary implementation
+                      details are exposed.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* PITCH DECK SECTION */}
+              <section id="deck" className="relative z-10 border-t border-slate-800/60 bg-slate-950/80 px-4 py-16 lg:px-8">
+                <div className="mx-auto max-w-6xl">
+                  <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                      <h2 className="text-xl font-semibold tracking-tight text-slate-50">Pitch Deck · Phoenix Grid</h2>
+                      <p className="max-w-2xl text-xs leading-relaxed text-slate-300">
+                        A 20-slide non-confidential deck summarizing the vision, problem, solution, architecture, modules, business logic and ethical
+                        positioning of the Phoenix Grid platform.
+                      </p>
+                    </div>
+                    <div className="text-[10px] text-slate-400">
+                      Format: Conceptual · Non-Confidential
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    {deckSlides.map((title, index) => (
+                      <div
+                        key={index}
+                        className="group relative flex h-24 cursor-default flex-col justify-between overflow-hidden rounded-xl border border-slate-800/80 bg-slate-950/90 px-3 py-3 text-[11px] shadow-[0_0_24px_rgba(15,23,42,0.85)] transition duration-300 hover:-translate-y-1 hover:border-indigo-400/80 hover:shadow-[0_0_55px_rgba(129,140,248,0.9)]"
+                      >
+                        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_0_0,#6366f1_0,transparent_45%),radial-gradient(circle_at_100%_100%,#f472b6_0,transparent_45%)]" />
+                        <div className="relative z-10 flex items-center justify-between gap-2">
+                          <span className="rounded-full bg-slate-900/80 px-2 py-0.5 text-[10px] font-semibold text-slate-200">
+                            {`Slide ${(index + 1).toString().padStart(2, "0")}`}
+                          </span>
+                          <span className="text-[10px] text-indigo-200/80 group-hover:text-indigo-50">Phoenix Grid</span>
+                        </div>
+                        <div className="relative z-10 mt-2 text-[11px] font-medium text-slate-100 group-hover:text-slate-50">
+                          {title}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-10 flex flex-wrap items-center justify-between gap-4 text-[11px] text-slate-300">
+                    <p className="max-w-2xl">
+                      The deck can be exported into any standard format (PDF / PPT / web presentation) and extended with confidential technical appendices
+                      under NDA where required.
+                    </p>
+                    <button className="group relative overflow-hidden rounded-full border border-indigo-500/80 bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-sky-400 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-950 shadow-[0_0_40px_rgba(129,140,248,0.8)] hover:shadow-[0_0_60px_rgba(129,140,248,1)] transition-shadow">
+                      <span className="relative z-10">Request Non-Confidential Deck</span>
+                      <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-30 bg-[radial-gradient(circle_at_center,white_0,transparent_55%)]" />
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              {/* FOOTER */}
+              <footer className="relative z-10 border-t border-slate-800/60 bg-slate-950/90 px-4 py-8 text-[11px] text-slate-400 lg:px-8">
+                <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="h-4 w-4 rounded-full bg-gradient-to-br from-indigo-500 to-fuchsia-500"></div>
+                    <span className="font-semibold text-slate-300">PHOENIX GRID</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-6">
+                    <span className="text-slate-500 hover:text-indigo-400 cursor-pointer transition-colors">Technology for Peace</span>
+                    <span className="text-slate-500 hover:text-indigo-400 cursor-pointer transition-colors">Intelligence for Humanity</span>
+                    <span className="text-slate-500 hover:text-indigo-400 cursor-pointer transition-colors">3D for Understanding</span>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+
+        function App() {
+          const [view, setView] = useState("landing");
+
+          return (
+            <>
+              {view === "landing" ? (
+                <PhoenixGridLanding onLaunchGalaxy={() => setView("galaxy")} />
+              ) : (
+                <PhoenixModulesGalaxy onBack={() => setView("landing")} />
+              )}
+            </>
+          );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
