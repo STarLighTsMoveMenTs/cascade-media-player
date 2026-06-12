@@ -2,6 +2,8 @@ import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import { OrbitControls, Line, Trail } from '@react-three/drei';
 import * as THREE from 'three';
+import { partnerDomainMap } from '@/lib/logoDev';
+import { extraPartners } from '@/data/extraPartners';
 
 // --- Types ---
 export type LocationData = {
@@ -14,6 +16,7 @@ export type LocationData = {
   phone: string;
   address: string;
   data_value: number;
+  domain?: string;
 };
 
 interface HologramSceneProps {
@@ -87,7 +90,60 @@ export const locations: LocationData[] = [
   { name: "European Parliament", city: "Strasbourg", country: "France", lat: 48.5734, lon: 7.7521, ceo: "Roberta Metsola", phone: "+33 3 88 17 40 01", address: "Allée du Printemps", data_value: 89 },
   { name: "Microsoft for Startups", city: "Redmond", country: "USA", lat: 47.6740, lon: -122.1215, ceo: "VP Startups", phone: "+1 425-882-8080", address: "One Microsoft Way", data_value: 77 },
   { name: "AWS Activate", city: "Seattle", country: "USA", lat: 47.6062, lon: -122.3321, ceo: "Global Head", phone: "+1 206-266-1000", address: "410 Terry Ave N", data_value: 79 },
+
+  // --- Additional Official Partners ---
+  { name: "NATO", city: "Brussels", country: "Belgium", lat: 50.8789, lon: 4.4187, ceo: "Jens Stoltenberg", phone: "+32 2 707 41 11", address: "Boulevard Leopold III", data_value: 93 },
+  { name: "OECD", city: "Paris", country: "France", lat: 48.8566, lon: 2.3522, ceo: "Mathias Cormann", phone: "+33 1 45 24 82 00", address: "2 rue André Pascal", data_value: 87 },
+  { name: "Interpol", city: "Lyon", country: "France", lat: 45.7640, lon: 4.8357, ceo: "Jürgen Stock", phone: "+33 4 72 44 70 00", address: "200 quai Charles de Gaulle", data_value: 85 },
+  { name: "Red Cross", city: "Geneva", country: "Switzerland", lat: 46.2276, lon: 6.1439, ceo: "Mirjana Spoljaric", phone: "+41 22 734 60 01", address: "19 Avenue de la Paix", data_value: 92 },
+  { name: "World Bank", city: "Washington, D.C.", country: "USA", lat: 38.9041, lon: -77.0171, ceo: "Ajay Banga", phone: "+1 202-473-1000", address: "1818 H Street NW", data_value: 94 },
+  { name: "IMF", city: "Washington, D.C.", country: "USA", lat: 38.8951, lon: -77.0364, ceo: "Kristalina Georgieva", phone: "+1 202-623-7000", address: "700 19th Street NW", data_value: 91 },
+  { name: "OPEC", city: "Vienna", country: "Austria", lat: 48.2082, lon: 16.3738, ceo: "Haitham Al Ghais", phone: "+43 1 211 12 0", address: "Obere Donaustrasse 93", data_value: 76 },
+  { name: "ASEAN", city: "Jakarta", country: "Indonesia", lat: -6.2088, lon: 106.8456, ceo: "Sec-General", phone: "+62 21 724 3372", address: "70A Jalan Sisingamangaraja", data_value: 71 },
+  { name: "African Union", city: "Addis Ababa", country: "Ethiopia", lat: 9.0054, lon: 38.7636, ceo: "Moussa Faki", phone: "+251 11 551 77 00", address: "Roosevelt Street", data_value: 67 },
+  { name: "World Economic Forum", city: "Cologny", country: "Switzerland", lat: 46.2247, lon: 6.1856, ceo: "Børge Brende", phone: "+41 22 869 1212", address: "91-93 Route de la Capite", data_value: 83 },
+  { name: "Shell", city: "The Hague", country: "Netherlands", lat: 52.0705, lon: 4.3007, ceo: "Wael Sawan", phone: "+31 70 377 9111", address: "Carel van Bylandtlaan 30", data_value: 88 },
+  { name: "Siemens", city: "Munich", country: "Germany", lat: 48.1351, lon: 11.5820, ceo: "Roland Busch", phone: "+49 89 636 00", address: "Werner-von-Siemens-Strasse 1", data_value: 95 },
+  { name: "Bosch", city: "Gerlingen", country: "Germany", lat: 48.7994, lon: 9.0665, ceo: "Stefan Hartung", phone: "+49 711 811 0", address: "Robert-Bosch-Platz 1", data_value: 93 },
+  { name: "SAP", city: "Walldorf", country: "Germany", lat: 49.2888, lon: 8.6380, ceo: "Christian Klein", phone: "+49 6227 7474", address: "Dietmar-Hopp-Allee 16", data_value: 90 },
+  { name: "Airbus", city: "Toulouse", country: "France", lat: 43.6047, lon: 1.4442, ceo: "Guillaume Faury", phone: "+33 5 61 93 33 33", address: "1 rond-point Maurice Bellonte", data_value: 89 },
+  { name: "Bayer", city: "Leverkusen", country: "Germany", lat: 51.0459, lon: 7.0192, ceo: "Bill Anderson", phone: "+49 214 301", address: "Kaiser-Wilhelm-Allee 1", data_value: 86 },
+  { name: "BASF", city: "Ludwigshafen", country: "Germany", lat: 49.4875, lon: 8.4660, ceo: "Martin Brudermüller", phone: "+49 621 60 0", address: "Carl-Bosch-Strasse 38", data_value: 87 },
+  { name: "Allianz", city: "Munich", country: "Germany", lat: 48.1391, lon: 11.5802, ceo: "Oliver Bäte", phone: "+49 89 3800 0", address: "Königinstrasse 28", data_value: 84 },
+  { name: "Deutsche Bank", city: "Frankfurt", country: "Germany", lat: 50.1109, lon: 8.6821, ceo: "Christian Sewing", phone: "+49 69 910 00", address: "Taunusanlage 12", data_value: 82 },
+  { name: "Lufthansa", city: "Cologne", country: "Germany", lat: 50.8783, lon: 7.1224, ceo: "Carsten Spohr", phone: "+49 69 696 0", address: "Von-Gablenz-Strasse 2-6", data_value: 80 },
+  { name: "Adidas", city: "Herzogenaurach", country: "Germany", lat: 49.5684, lon: 10.8868, ceo: "Bjørn Gulden", phone: "+49 9132 84 0", address: "Adi-Dassler-Strasse 1", data_value: 79 },
+  { name: "Puma", city: "Herzogenaurach", country: "Germany", lat: 49.5671, lon: 10.8855, ceo: "Arne Freundt", phone: "+49 9132 81 0", address: "Daimlerstrasse 140", data_value: 75 },
+  { name: "Spotify", city: "Stockholm", country: "Sweden", lat: 59.3293, lon: 18.0686, ceo: "Daniel Ek", phone: "+46 8 50 70 30 00", address: "Regeringsgatan 19", data_value: 88 },
+  { name: "Samsung", city: "Seoul", country: "South Korea", lat: 37.5665, lon: 126.9780, ceo: "Jay Y. Lee", phone: "+82 2 2255 0114", address: "129 Samsung-ro", data_value: 97 },
+  { name: "Sony", city: "Tokyo", country: "Japan", lat: 35.6480, lon: 139.7456, ceo: "Kenichiro Yoshida", phone: "+81 3 6748 2111", address: "1-7-1 Konan Minato-ku", data_value: 90 },
+  { name: "Ericsson", city: "Stockholm", country: "Sweden", lat: 59.4056, lon: 17.9567, ceo: "Börje Ekholm", phone: "+46 10 719 00 00", address: "Torshamnsgatan 21", data_value: 81 },
+  { name: "Nokia", city: "Espoo", country: "Finland", lat: 60.2055, lon: 24.6559, ceo: "Pekka Lundmark", phone: "+358 10 44 88 000", address: "Karaportti 3", data_value: 78 },
+
+  // --- HNOSS Network / Personal Projects ---
+  { name: "StatesFlowWishes", city: "Detmold", country: "Germany", lat: 51.9363, lon: 8.8831, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Detmold, NRW", data_value: 100 },
+  { name: "ValueSky", city: "Detmold", country: "Germany", lat: 51.9380, lon: 8.8850, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Detmold, NRW", data_value: 100 },
+  { name: "Heftling", city: "Berlin", country: "Germany", lat: 52.5200, lon: 13.4050, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Berlin", data_value: 100 },
+
+  // --- Projects from Untitled-2 ---
+  { name: "sTarLighTsMoveMenTs", city: "Detmold", country: "Germany", lat: 51.9370, lon: 8.8840, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Detmold, NRW", data_value: 100 },
+  { name: "dfffoesssooooassso", city: "Munich", country: "Germany", lat: 48.1351, lon: 11.5820, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "European Patent Office Assoc.", data_value: 85 },
+  { name: "ChurchPattern", city: "Berlin", country: "Germany", lat: 52.5200, lon: 13.4050, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Zellkeller / Heftling", data_value: 90 },
+  { name: "GardienSystem", city: "Frankfurt", country: "Germany", lat: 50.1109, lon: 8.6821, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Vervielfältigung / EBA Assoc.", data_value: 88 },
+  { name: "Moonschlee", city: "The Hague", country: "Netherlands", lat: 52.0705, lon: 4.3007, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Placeholder / EPO Assoc.", data_value: 87 },
+  { name: "pFihPeAcuST", city: "Brussels", country: "Belgium", lat: 50.8789, lon: 4.4187, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Council of the EU Assoc.", data_value: 92 },
+  { name: "Pathwinding", city: "Berlin", country: "Germany", lat: 52.5210, lon: 13.4060, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "windingPath / Heftling", data_value: 89 },
+  { name: "Phmegtishen", city: "Detmold", country: "Germany", lat: 51.9350, lon: 8.8820, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "StarLight Movements", data_value: 95 },
+  { name: "Flykniwnie", city: "Detmold", country: "Germany", lat: 51.9340, lon: 8.8810, ceo: "St. Daniel Pohl", phone: "+49 1523 875 7059", address: "Phmegtishen Assoc.", data_value: 86 },
+  ...extraPartners,
 ];
+
+// Auto-enrich locations with known partner domains for logo.dev
+locations.forEach(loc => {
+  if (!loc.domain && partnerDomainMap[loc.name]) {
+    loc.domain = partnerDomainMap[loc.name];
+  }
+});
 
 // --- Scanner Beam Component ---
 const ScannerBeam: React.FC<{ phoenixMode: boolean }> = ({ phoenixMode }) => {

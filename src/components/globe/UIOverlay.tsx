@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LocationData, locations } from './HologramScene';
 import { AudioReactor } from './AudioReactor';
+import { getLogoUrl } from '@/lib/logoDev';
 
 interface UIOverlayProps {
   selectedLocation: LocationData | null;
@@ -155,10 +156,20 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ selectedLocation, onSelect
       <div className={`absolute top-32 left-8 w-80 pointer-events-auto transition-all duration-500 ease-out transform z-20 ${selectedLocation ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'}`}>
         {selectedLocation && (
           <TechBox className={`p-6 border-l-2 ${phoenixMode ? 'border-l-amber-500' : 'border-l-cyan-500'}`}>
-            <h2 className={`text-3xl font-bold ${themeColor} leading-none mb-4 uppercase`}>
+            <h2 className={`text-3xl font-bold ${themeColor} leading-none mb-2 uppercase`}>
                 {selectedLocation.name}
             </h2>
-            
+            {selectedLocation.domain && (
+              <div className="mb-3">
+                <img
+                  src={getLogoUrl(selectedLocation.domain, { retina: true, size: 120 })}
+                  alt={`${selectedLocation.name} logo`}
+                  className="h-8 w-auto object-contain bg-white/5 rounded px-1"
+                  loading="lazy"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                />
+              </div>
+            )}
             <div className="space-y-4 text-sm">
               <div className="group">
                 <span className="text-slate-300 text-[10px] uppercase tracking-widest block">Leader</span>
@@ -211,10 +222,19 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({ selectedLocation, onSelect
                       className={`cursor-pointer transition-colors hover:bg-white/10 ${selectedLocation?.name === loc.name ? 'bg-white/10' : ''}`}
                       onClick={() => onSelectLocation(loc)}
                      >
-                       <td className={`py-2 pl-4 font-medium ${selectedLocation?.name === loc.name ? themeColor : 'text-slate-100'}`}>
-                         {loc.name}
+                       <td className={`py-1 pl-3 font-medium flex items-center gap-2 ${selectedLocation?.name === loc.name ? themeColor : 'text-slate-100'}`}>
+                         {loc.domain && (
+                           <img
+                             src={getLogoUrl(loc.domain, { size: 24 })}
+                             alt=""
+                             className="h-5 w-5 object-contain rounded bg-white/90 shrink-0"
+                             loading="lazy"
+                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                           />
+                         )}
+                         <span className="truncate">{loc.name}</span>
                        </td>
-                       <td className="py-2 pr-4 text-right text-slate-300">
+                       <td className="py-1 pr-3 text-right text-slate-300">
                          {loc.city}
                        </td>
                      </tr>
